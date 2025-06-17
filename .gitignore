@@ -1,6 +1,10 @@
 # Dependency directories
 node_modules/
 jspm_packages/
+local-dev.js
+vite.local.config.js
+vite.config.local.js
+vite.server.js
 
 # Build outputs
 dist/
