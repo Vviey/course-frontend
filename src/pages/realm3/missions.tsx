@@ -268,12 +268,12 @@ export default function Realm4Missions() {
               mission={{
                 id: missionData?.id || 1,
                 title: missionData?.title || "Bitcoin Mining",
-                subtitle: missionData?.subtitle || "Bitcoin mining mechanics and technology", 
+                subtitle: missionData?.subtitle || "Bitcoin mining mechanics and technology",
                 description: "Explore the mountain forge and learn about Bitcoin mining.",
                 objectives: ["Learn about proof-of-work mining", "Understand mining difficulty", "Complete the interactive simulation"],
                 simulationType: "bitcoin" as 'surveillance' | 'privacy' | 'cbdc' | 'bitcoin' | 'lightning' | 'selfcustody',
                 content: typeof missionData?.content === 'string' ? missionData.content : "Learn about Bitcoin mining and the Proof of Work consensus mechanism. Mining is the process of adding new blocks to the blockchain."
-              } as Realm2MissionData}
+              } as unknown as Realm2MissionData}
               onComplete={handleMissionComplete}
               realmTheme="amber"
             />
