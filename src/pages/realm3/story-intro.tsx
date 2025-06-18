@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from "wouter";
+
 
 // Type definitions
 type ActType = 'open-access' | 'global-reach' | 'transparent-rules' | 'user-sovereignty';
@@ -83,6 +85,7 @@ const SparkBeneathStoneSimulation = () => {
   });
   
   const [ashaState, setAshaState] = useState<AshaState>('neutral');
+  const [, setLocation] = useLocation();
   const [oduState, setOduState] = useState<OduState>('hidden');
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [blockHeight, setBlockHeight] = useState(850000);
@@ -396,7 +399,7 @@ const SparkBeneathStoneSimulation = () => {
               "Asha, you have touched the spark. Now you understand why Bitcoin changes everything." - Odu
             </div>
             <button
-              onClick={() => window.location.href = '/realm/3'}
+              onClick={() => setLocation('/realm/3')}
               className="bg-gradient-to-r from-green-600 to-teal-500 text-white font-bold py-4 px-8 rounded-xl hover:from-green-700 hover:to-teal-600 transition-all transform hover:scale-105 shadow-lg shadow-green-500/25"
             >
               🌿 Continue Asha's Journey - Learn How Bitcoin Actually Works
