@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { realm2Missions } from "@/lib/realm2-missions";
+import { citadelTheme } from "@/lib/realm-themes";
 
 // The Central Citadel - Realm 2 Home Page
 export default function Realm2Home() {
@@ -28,19 +29,39 @@ export default function Realm2Home() {
   const getMissionIcon = (type: string) => {
     switch (type) {
       case 'surveillance':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-The-Citadel-Shados.png)';
+        return '👁️';
       case 'privacy':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm2-Privacy-vs-Control.png)';
+        return '🔒';
       case 'cbdc':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-CBDCs-and-Privacy.png)';
+        return '🏛️';
       case 'bitcoin':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Bitcoins-Transparency.png)';
+        return '₿';
       case 'lightning':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-Network.png)';
+        return '⚡';
       case 'selfcustody':
-        return 'url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Self-Custody.png)';
+        return '🔐';
       default:
-        return '🔍';
+        return '🏛️';
+    }
+  };
+
+  // Get mission image for display
+  const getMissionImage = (type: string) => {
+    switch (type) {
+      case 'surveillance':
+        return 'https://pfst.cf2.poecdn.net/base/image/137c532c1abed120993d8553ac65c58b94e84c2af25209c4d6bb7900f271d356?w=530&h=260';
+      case 'privacy':
+        return 'https://pfst.cf2.poecdn.net/base/image/1074938abe59a0c71e2e5c44ff52edae347ba4b38a8c9e1efdf7ea73ae3c6da4?w=530&h=260';
+      case 'cbdc':
+        return 'https://pfst.cf2.poecdn.net/base/image/d2d82b9c4569d1c62fabb7ad35624de452c34185b8005971783452be61d27147?w=530&h=260';
+      case 'bitcoin':
+        return 'https://pfst.cf2.poecdn.net/base/image/52f1a844c3ef86ecd1408f83ba2517f59f33f2ee4265f741e73173a219a09250?w=530&h=260';
+      case 'lightning':
+        return 'https://pfst.cf2.poecdn.net/base/image/aa3a018485d39bb26c5c71d9795bb229400c83736522c742aaaeea390c5b5147?w=530&h=260';
+      case 'selfcustody':
+        return 'https://pfst.cf2.poecdn.net/base/image/aa3a018485d39bb26c5c71d9795bb229400c83736522c742aaaeea390c5b5147?w=530&h=260';
+      default:
+        return 'https://pfst.cf2.poecdn.net/base/image/d2d82b9c4569d1c62fabb7ad35624de452c34185b8005971783452be61d27147?w=530&h=260';
     }
   };
 
@@ -80,15 +101,52 @@ export default function Realm2Home() {
   return (
     <div className="min-h-screen bg-black text-white py-8 px-4 sm:px-6 lg:px-8" 
          style={{
-          //  background: "linear-gradient(to bottom, #000000, #1a001a)",
            backgroundImage: "url(https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-The-Citadel-Shados.png)",
            backgroundSize: "cover",
-          //  backgroundPosition: "center",
-          //  backgroundAttachment: "fixed",
-          //  backgroundBlendMode: "overlay"
+           backgroundPosition: "center",
+           backgroundAttachment: "fixed",
+           backgroundBlendMode: "overlay"
          }}>
       
       <div className="max-w-5xl mx-auto">
+        {/* Navigation Header */}
+        <div className="mb-8">
+          <div className="flex justify-between items-center">
+            <button
+              onClick={() => setLocation('/map')}
+              className="flex items-center px-4 py-2 rounded-lg hover:bg-purple-900/30 transition-colors border border-purple-900/50"
+              style={{ color: citadelTheme.colors?.primary || '#a855f7' }}
+            >
+              <span className="mr-2">←</span>
+              <span>Return to Map</span>
+            </button>
+            
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setLocation('/profile')}
+                className="p-2 rounded-full hover:bg-purple-900/30 transition-colors border border-purple-900/50"
+                style={{ color: citadelTheme.colors?.primary || '#a855f7' }}
+              >
+                👤
+              </button>
+              <button
+                onClick={() => setLocation('/badges')}
+                className="p-2 rounded-full hover:bg-purple-900/30 transition-colors border border-purple-900/50"
+                style={{ color: citadelTheme.colors?.primary || '#a855f7' }}
+              >
+                🏆
+              </button>
+              <button
+                onClick={() => setLocation('/journey')}
+                className="p-2 rounded-full hover:bg-purple-900/30 transition-colors border border-purple-900/50"
+                style={{ color: citadelTheme.colors?.primary || '#a855f7' }}
+              >
+                🗺️
+              </button>
+            </div>
+          </div>
+        </div>
+        
         <div className="backdrop-blur-md bg-black/60 rounded-xl p-6 mb-8 border border-purple-900/50">
           <h1 className="text-4xl font-bold text-purple-500 mb-2">The Central Citadel</h1>
           <p className="text-xl text-purple-200 mb-6">Realm 2: Where Privacy Meets Control</p>
@@ -130,18 +188,46 @@ export default function Realm2Home() {
             <motion.div 
               key={mission.id}
               variants={itemVariants}
-              className="backdrop-blur-md bg-black/60 rounded-xl p-5 border border-purple-900/50 hover:border-purple-500/70 transition-all cursor-pointer"
+              className="backdrop-blur-md bg-black/60 rounded-xl overflow-hidden border border-purple-900/50 hover:border-purple-500/70 transition-all cursor-pointer"
               onClick={() => handleStartMission(mission.id)}
+              whileHover={{ 
+                y: -5,
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)',
+                borderColor: citadelTheme.colors?.primary || '#a855f7'
+              }}
             >
-              <div className="h-40 rounded-lg bg-gradient-to-br from-purple-700 to-purple-900 mb-4 flex items-center justify-center">
-                <span className="text-5xl">{getMissionIcon(mission.simulationType)}</span>
+              <div className="h-40 relative overflow-hidden">
+                <img 
+                  src={getMissionImage(mission.simulationType)} 
+                  alt={mission.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-3xl">{getMissionIcon(mission.simulationType)}</span>
+                </div>
               </div>
-              <div className="mb-2 text-xs text-purple-300 font-medium">
-                Mission {index + 1} • {mission.simulationType.charAt(0).toUpperCase() + mission.simulationType.slice(1)}
+              
+              <div className="p-5">
+                <div className="mb-2 text-xs text-purple-300 font-medium">
+                  Mission {index + 1} • {mission.simulationType.charAt(0).toUpperCase() + mission.simulationType.slice(1)}
+                </div>
+                <h3 className="text-xl font-medium text-purple-400 mb-2">{mission.title}</h3>
+                <p className="text-sm text-purple-300 mb-2 italic">{mission.subtitle}</p>
+                <p className="text-gray-400 text-sm">{mission.description}</p>
+                
+                <div className="mt-4 flex justify-between items-center">
+                  <div className="text-xs font-medium uppercase text-purple-300">
+                    Start Mission
+                  </div>
+                  
+                  {mission.completed && (
+                    <div className="bg-green-900/20 text-green-400 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                      Completed
+                    </div>
+                  )}
+                </div>
               </div>
-              <h3 className="text-xl font-medium text-purple-400 mb-2">{mission.title}</h3>
-              <p className="text-sm text-purple-300 mb-2 italic">{mission.subtitle}</p>
-              <p className="text-gray-400">{mission.description}</p>
             </motion.div>
           ))}
         </motion.div>

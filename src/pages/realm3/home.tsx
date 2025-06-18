@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { ArrowRight, Code, GitMerge, Fingerprint, Lock, Network, Zap, Trees } from 'lucide-react';
+import { ArrowRight, Code, GitMerge, Fingerprint, Lock, Network, Zap, Trees, ChevronLeft, User, Award, Map } from 'lucide-react';
 import { bioluminescentTheme } from '@/lib/realm-themes'; // Theme for The Forest of Sparks (Realm 3)
 import { realm3Missions } from '@/lib/realm3-missions';
 
@@ -26,7 +26,7 @@ export default function Realm3Home() {
       transition: { type: 'spring' as const, stiffness: 100 }
     }
   };
-  
+
   // Helper function to get correct icon for mission
   const getMissionIcon = (type: string) => {
     switch (type) {
@@ -58,6 +58,36 @@ export default function Realm3Home() {
       }}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Navigation Header */}
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          <div className="flex justify-between items-center mb-8">
+            <Link href="/home">
+              <a className="linear-gradient(to right, #1A8F60, #46D1A2)">
+                <ChevronLeft className="mr-2 h-5 w-5" />
+                <span>Return to Home</span>
+              </a>
+            </Link>
+            
+            <div className="flex items-center space-x-4">
+              <Link href="/profile">
+                <a className="p-2 rounded-full hover:bg- #1A8F60 transition-colors">
+                  <User className="linear-gradient(to right, #1A8F60, #46D1A2)" />
+                </a>
+              </Link>
+              <Link href="/badges">
+                <a className="p-2 rounded-full hover:bg- #1A8F60 transition-colors">
+                  <Award className="linear-gradient(to right, #1A8F60, #46D1A2)" />
+                </a>
+              </Link>
+              <Link href="/map">
+                <a className="p-2 rounded-full hover:bg- #1A8F60 transition-colors">
+                  <Map className="linear-gradient(to right, #1A8F60, #46D1A2)" />
+                </a>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -163,10 +193,6 @@ export default function Realm3Home() {
                     <p className="text-sm mb-4" style={{ color: bioluminescentTheme.colors.secondary }}>
                       {mission.subtitle}
                     </p>
-                    
-                    {/* <p className="text-sm text-teal-100 line-clamp-3 mb-6">
-                      {mission.description.split('.')[0]}.
-                    </p> */}
                     
                     <div className="flex justify-between items-center mt-auto">
                       <div>

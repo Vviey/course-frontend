@@ -81,6 +81,44 @@ export default function Realm5Home() {
       }}
     >
       <div className="max-w-5xl mx-auto">
+        {/* Navigation Header */}
+        <div className="mb-8">
+          <div className="flex justify-between items-center">
+            <button
+              onClick={() => setLocation('/journey')}
+              className="flex items-center px-4 py-2 rounded-lg hover:bg-black/40 transition-colors border border-amber-900/30"
+              style={{ color: councilTheme.colors.primary }}
+            >
+              <span className="mr-2">←</span>
+              <span>Return to Journey</span>
+            </button>
+            
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setLocation('/profile')}
+                className="p-2 rounded-full hover:bg-black/40 transition-colors border border-amber-900/30"
+                style={{ color: councilTheme.colors.primary }}
+              >
+                👤
+              </button>
+              <button
+                onClick={() => setLocation('/badges')}
+                className="p-2 rounded-full hover:bg-black/40 transition-colors border border-amber-900/30"
+                style={{ color: councilTheme.colors.primary }}
+              >
+                🏆
+              </button>
+              <button
+                onClick={() => setLocation('/map')}
+                className="p-2 rounded-full hover:bg-black/40 transition-colors border border-amber-900/30"
+                style={{ color: councilTheme.colors.primary }}
+              >
+                🗺️
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Realm header */}
         <div 
           className="mb-10 text-center backdrop-blur-md bg-black/60 p-6 rounded-xl border shadow-xl"
@@ -245,7 +283,7 @@ export default function Realm5Home() {
             Return to Journey
           </button>
           
-          {user?.progress?.currentRealm > 5 && (
+          {(user?.progress?.currentRealm ?? 0) > 5 && (
             <button
               onClick={() => setLocation('/realm/6')}
               className="px-6 py-2 text-white rounded-lg transition-colors"

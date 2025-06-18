@@ -1,6 +1,7 @@
 // Data for Realm 2 missions
 
 export interface Realm2MissionData {
+  completed: any;
   id: number;
   title: string;
   subtitle: string;
@@ -184,7 +185,8 @@ export const realm2Missions: Realm2MissionData[] = [
           </div>
         </div>
       </div>
-    `
+    `,
+    completed: undefined
   },
   {
     id: 102,
@@ -310,7 +312,8 @@ export const realm2Missions: Realm2MissionData[] = [
           "This tension - between convenience and privacy, between access and autonomy - forms the central challenge of our modern monetary systems."
         </p>
       </div>
-    `
+    `,
+    completed: undefined
   },
   {
     id: 103,
@@ -413,7 +416,8 @@ export const realm2Missions: Realm2MissionData[] = [
           </div>
         </div>
       </div>
-    `
+    `,
+    completed: undefined
   },
   {
     id: 104,
@@ -552,7 +556,8 @@ export const realm2Missions: Realm2MissionData[] = [
           </div>
         </div>
       </div>
-    `
+    `,
+    completed: undefined
   },
   {
     id: 105,
@@ -694,7 +699,8 @@ export const realm2Missions: Realm2MissionData[] = [
           </div>
         </div>
       </div>
-    `
+    `,
+    completed: undefined
   },
   {
     id: 106,
@@ -733,7 +739,8 @@ export const realm2Missions: Realm2MissionData[] = [
       Despite these challenges, Asha learns that Bitcoin represents a fundamental shift in the privacy model: 
       instead of authority-granted privacy that can be revoked, Bitcoin offers a base layer of pseudonymity 
       that users can enhance with proper techniques.
-    `
+    `,
+    completed: undefined
   },
 
   {
@@ -856,6 +863,7 @@ export const realm2Missions: Realm2MissionData[] = [
           <p style="margin: 0; font-style: italic;">True financial freedom requires taking personal responsibility for your money</p>
         </div>
       </div>
-    `
+    `,
+    completed: undefined
   }
 ];

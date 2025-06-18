@@ -1,7 +1,10 @@
 export interface RealmTheme {
+  fonts: any;
   id: number;
   name: string;
   colors: {
+    icon: string;
+    border: string;
     lightText: string;
     primary: string;
     secondary: string;
@@ -67,11 +70,14 @@ export const originTheme: RealmTheme = {
     darkText: "#3A2E00", // Deep Earth Brown
     gradientStart: "#B34700", // Terracotta gradient start
     gradientEnd: "#EE720B",
-    lightText: "000000"
-  },  
-  
+    lightText: "000000",
+    icon: "",
+    border: ""
+  },
+
   patternClass: "utility-pattern",
-  backgroundTexture: "url('/textures/village-pattern.svg')"
+  backgroundTexture: "url('/textures/village-pattern.svg')",
+  fonts: undefined
 };
 // Central Citadel Theme
 export const centralbankTheme: RealmTheme = {
@@ -89,7 +95,9 @@ export const centralbankTheme: RealmTheme = {
     accent2: "#00A6ED",
     lightText: "000000",
     gradientStart: "#00243F",
-    gradientEnd: "#003E70"
+    gradientEnd: "#003E70",
+    icon: "",
+    border: ""
   },
   gradients: {
     sunset: "linear-gradient(to right, #00589B, #0076CE)",
@@ -101,7 +109,8 @@ export const centralbankTheme: RealmTheme = {
     button: "0 2px 4px rgba(0, 89, 155, 0.3)"
   },
   patternClass: "centralbank-pattern",
-  backgroundTexture: "url('/textures/marble-pattern.svg')"
+  backgroundTexture: "url('/textures/marble-pattern.svg')",
+  fonts: undefined
 };
 
 // Aliases for themed components that reference the themes by different names
@@ -123,7 +132,9 @@ export const cryptographyTheme: RealmTheme = {
     accent2: "#16FFBD",
     lightText: "000000",
     gradientStart: "#0D3D29",
-    gradientEnd: "#165E40"
+    gradientEnd: "#165E40",
+    icon: "",
+    border: ""
   },
   patterns: {
     adinkra: `repeating-linear-gradient(
@@ -150,7 +161,8 @@ export const cryptographyTheme: RealmTheme = {
     glow: "pulse 2s infinite",
   },
   patternClass: "crypto-pattern",
-  backgroundTexture: "url('/textures/binary-pattern.svg')"
+  backgroundTexture: "url('/textures/binary-pattern.svg')",
+  fonts: undefined
 };
 
 // Alias for Realm 3 components
@@ -172,10 +184,13 @@ export const miningTheme: RealmTheme = {
     accent2: "#FFC700",
     gradientStart: "#3A2A00",
     lightText: "000000",
-    gradientEnd: "#725400"
+    gradientEnd: "#725400",
+    icon: "",
+    border: ""
   },
   patternClass: "mining-pattern",
-  backgroundTexture: "url('/textures/forge-pattern.svg')"
+  backgroundTexture: "url('/textures/forge-pattern.svg')",
+  fonts: undefined
 };
 
 // Council of Forks Theme
@@ -194,10 +209,13 @@ export const governanceTheme: RealmTheme = {
     lightText: "000000",
     accent2: "#FF73FF",
     gradientStart: "#42184A",
-    gradientEnd: "#6C3078"
+    gradientEnd: "#6C3078",
+    icon: "",
+    border: ""
   },
   patternClass: "governance-pattern",
-  backgroundTexture: "url('/textures/branch-pattern.svg')"
+  backgroundTexture: "url('/textures/branch-pattern.svg')",
+  fonts: undefined
 };
 
 // Ubuntu Village Theme
@@ -216,10 +234,13 @@ export const utilityTheme: RealmTheme = {
     accent1: "#FF6D4D",
     accent2: "#FF9B85",
     gradientStart: "#541400",
-    gradientEnd: "#A32D00"
+    gradientEnd: "#A32D00",
+    icon: "",
+    border: ""
   },
   patternClass: "utility-pattern",
-  backgroundTexture: "url('/textures/village-pattern.svg')"
+  backgroundTexture: "url('/textures/village-pattern.svg')",
+  fonts: undefined
 };
 
 // Summit of Knowledge Theme
@@ -238,10 +259,13 @@ export const mastersTheme: RealmTheme = {
     accent1: "#6695F2",
     accent2: "#99BDFF",
     gradientStart: "#122C59",
-    gradientEnd: "#2652A3"
+    gradientEnd: "#2652A3",
+    icon: "",
+    border: ""
   },
   patternClass: "masters-pattern",
-  backgroundTexture: "url('/textures/summit-pattern.svg')"
+  backgroundTexture: "url('/textures/summit-pattern.svg')",
+  fonts: undefined
 };
 
 export const getRealmTheme = (realmId: number): RealmTheme => {
