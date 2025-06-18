@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from "wouter";
 
 type MiningPhase = 'setup' | 'puzzle-race' | 'honest-test' | 'energy-challenge' | 'victory';
 type AshaState = 'excited' | 'working' | 'cheering' | 'focused' | 'proud';
@@ -44,6 +45,7 @@ const MiningPlayground = () => {
     
     const [currentChallenge, setCurrentChallenge] = useState<MiningChallenge | null>(null);
     const [playerAnswer, setPlayerAnswer] = useState('');
+    const [, setLocation] = useLocation();
     const [score, setScore] = useState({ blocksWon: 0, energySpent: 0, cheatersCaught: 0 });
     const [gameMessage, setGameMessage] = useState('');
     const [showCelebration, setShowCelebration] = useState(false);
@@ -319,7 +321,7 @@ const MiningPlayground = () => {
                             Ready to explore more Bitcoin mysteries?
                         </div>
                         <button
-                            onClick={() => window.location.href = '/realm/4'}
+                            onClick={() => setLocation('/realm/4')}
                             className="bg-gradient-to-r from-yellow-600 to-orange-500 text-yellow-950 font-bold py-4 px-8 rounded-xl hover:from-yellow-700 hover:to-orange-600 transition-all transform hover:scale-105 shadow-lg"
                         >
                             🚀 Continue Asha's Bitcoin Journey!
