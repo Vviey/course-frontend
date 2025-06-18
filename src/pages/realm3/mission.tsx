@@ -7,6 +7,7 @@ import { MissionContent as Realm3MissionContent } from '@/lib/realm3-missions';
 import { getRealmName } from '@/lib/realm-utils';
 import { bioluminescentTheme, miningTheme } from '@/lib/realm-themes';
 
+
 export default function MissionPage() {
   const [_, params] = useRoute('/realm3/mission/:id');
   const missionId = params?.id ? parseInt(params.id) : null;
