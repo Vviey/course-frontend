@@ -50,7 +50,7 @@ export default function MissionPage() {
           <Link href="/realm3">
             <Button className="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Return to {getRealmName(4)}
+              Return to {getRealmName(3)}
             </Button>
           </Link>
         </div>
@@ -99,7 +99,7 @@ export default function MissionPage() {
           
           <Link href="/realm3">
             <Button variant="outline" className="border-orange-600 text-orange-400 hover:bg-orange-600/20">
-              Return to {getRealmName(4)}
+              Return to {getRealmName(3)}
             </Button>
           </Link>
         </div>
