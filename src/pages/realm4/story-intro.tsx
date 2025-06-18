@@ -319,7 +319,7 @@ const MiningPlayground = () => {
                             Ready to explore more Bitcoin mysteries?
                         </div>
                         <button
-                            onClick={() => window.location.href = '/next-adventure'}
+                            onClick={() => window.location.href = '/realm/4'}
                             className="bg-gradient-to-r from-yellow-600 to-orange-500 text-yellow-950 font-bold py-4 px-8 rounded-xl hover:from-yellow-700 hover:to-orange-600 transition-all transform hover:scale-105 shadow-lg"
                         >
                             🚀 Continue Asha's Bitcoin Journey!
