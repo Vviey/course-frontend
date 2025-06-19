@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
 import { Link } from 'wouter';
 import { ArrowRight, Code, GitMerge, Fingerprint, Lock, Network, Zap, Trees, ChevronLeft, User, Award, Map } from 'lucide-react';
 import { bioluminescentTheme } from '@/lib/realm-themes'; // Theme for The Forest of Sparks (Realm 3)
@@ -7,6 +8,7 @@ import { realm3Missions } from '@/lib/realm3-missions';
 
 export default function Realm3Home() {
   const [hoveredMission, setHoveredMission] = useState<number | null>(null);
+  const [, setLocation] = useLocation();
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,6 +27,9 @@ export default function Realm3Home() {
       opacity: 1,
       transition: { type: 'spring' as const, stiffness: 100 }
     }
+  };
+  const goToMission = (missionId: number) => {
+    setLocation(`/realm3/mission/${missionId}`);
   };
 
   // Helper function to get correct icon for mission
@@ -166,7 +171,7 @@ export default function Realm3Home() {
                   backdropFilter: 'blur(8px)'
                 }}
               >
-                <div className="block p-6 h-full" onClick={() => window.location.href = `/realm3/mission/${mission.id % 300 === 0 ? mission.id : mission.id % 300}`}>
+                <div className="block p-6 h-full" onClick={() => goToMission(mission.id)}>
                     <div className="flex justify-between items-start mb-4">
                       <div className="p-2 rounded-lg" 
                         style={{ 
