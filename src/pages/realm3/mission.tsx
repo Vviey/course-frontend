@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { realm3Missions } from '@/lib/realm3-missions';
 import { MissionContent as Realm3MissionContent } from '@/lib/realm3-missions';
 import { getRealmName } from '@/lib/realm-utils';
-import { miningTheme } from '@/lib/realm-themes';
+import { cryptographyTheme } from '@/lib/realm-themes';
 
 export default function MissionPage() {
   const [_, params] = useRoute('/realm3/mission/:id');
@@ -42,11 +42,11 @@ export default function MissionPage() {
     return (
       <div className="min-h-screen flex items-center justify-center"
         style={{
-          background: `linear-gradient(to bottom, ${miningTheme.colors.background}, ${miningTheme.colors.backgroundLight})`,
+          background: `linear-gradient(to bottom, ${cryptographyTheme.colors.background}, ${cryptographyTheme.colors.backgroundLight})`,
         }}
       >
         <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4" style={{ color: miningTheme.colors.primary }}>Mission not found</h1>
+          <h1 className="text-3xl font-bold mb-4" style={{ color: cryptographyTheme.colors.primary }}>Mission not found</h1>
           <Link href="/realm3">
             <Button className="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -69,7 +69,7 @@ export default function MissionPage() {
     return (
       <div className="min-h-screen py-12 px-4"
         style={{
-          background: `linear-gradient(to bottom, ${miningTheme.colors.background}, ${miningTheme.colors.backgroundLight})`,
+          background: `linear-gradient(to bottom, ${cryptographyTheme.colors.background}, ${cryptographyTheme.colors.backgroundLight})`,
         }}
       >
         <div className="max-w-2xl mx-auto bg-opacity-80 bg-black backdrop-blur rounded-lg p-8 text-center">
@@ -111,7 +111,7 @@ export default function MissionPage() {
     <div 
       className="min-h-screen text-white"
       style={{
-        background: `linear-gradient(to bottom, ${miningTheme.colors.background}, ${miningTheme.colors.backgroundLight})`,
+        background: `linear-gradient(to bottom, ${cryptographyTheme.colors.background}, ${cryptographyTheme.colors.backgroundLight})`,
         backgroundImage: "url('/realms/mining.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -204,7 +204,7 @@ export default function MissionPage() {
                 size="lg"
                 className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 text-xl rounded-xl shadow-lg"
                 style={{ 
-                  background: `linear-gradient(45deg, ${miningTheme.colors.primary}, ${miningTheme.colors.secondary})`,
+                  background: `linear-gradient(45deg, ${cryptographyTheme.colors.primary}, ${cryptographyTheme.colors.secondary})`,
                   boxShadow: '0 8px 32px rgba(238, 114, 11, 0.3)'
                 }}
               >

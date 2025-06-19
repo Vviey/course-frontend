@@ -230,14 +230,15 @@ function App() {
           
           {/* Universal realm routes */}
           <Route path="/realm/:id" component={RealmPage} />
+
+          {/*Special case for Realm 3 with numbered format*/}
+          <Route path="/realm/3/mission/:missionId" component={lazy(() => import("@/pages/realm3/mission-wrapper"))} /> 
+
           
           {/* Universal mission routes - these will use our dynamic mission wrapper */}
           <Route path="/realm/:realmId/mission/:missionId" component={MissionWrapper} />
           <Route path="/realm/:realmId/missions/:missionId" component={MissionWrapper} />
-          
-          {/*Special case for Realm 3 with numbered format*/}
-          {/* <Route path="/realm/3/mission/:missionId" component={lazy(() => import("@/pages/realm3/mission-wrapper"))} />  */}
-          
+                    
           {/* Special case for Realm 7 with numbered format */}
           <Route path="/realm/7/mission/:missionId" component={lazy(() => import("@/pages/realm7/mission-wrapper"))} />
           

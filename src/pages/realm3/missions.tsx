@@ -27,16 +27,25 @@ export default function Realm3Missions() {
   const { missionId } = useParams<{ missionId: string }>();
   const { user } = useAuth();
   const [missionComplete, setMissionComplete] = useState(false);
-  const [contentRead, setContentRead] = useState(false);
-  const [shareContent, setShareContent] = useState('');
-  const [showShareModal, setShowShareModal] = useState(false);
+ 
 
   // Parse mission ID from URL
   const missionNumber = parseInt(missionId || '1');
   const missionDataId = missionNumber;
 
+   // Log for debugging
+   console.log(`Realm 3 missions.tsx: Looking for mission with ID ${missionDataId}`);
+   console.log('Available mission IDs:', realm3Missions.map(m => m.id));
+
   // Current mission data
   const missionData = realm3Missions.find(m => m.id === missionDataId);
+
+  if (missionData) {
+    console.log('Found mission:', missionData.title);
+  } else {
+    console.error(`Mission with ID ${missionDataId} not found in Realm 3`);
+  }
+
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -125,6 +134,27 @@ export default function Realm3Missions() {
     setShowShareModal(true);
   };
 
+  // State to track if mission content has been read
+  const [contentRead, setContentRead] = useState(false);
+
+  // State for social media sharing content
+  const [shareContent, setShareContent] = useState('');
+  const [showShareModal, setShowShareModal] = useState(false);
+
+  // Generate social media sharing content based on mission
+  const generateShareContent = () => {
+    if (!missionData) return '';
+
+    // Generate a tailored message based on the mission
+    return generateSharingMessage();
+  };
+
+   // Handle starting the challenge after reading content
+   const handleStartChallenge = () => {
+    setContentRead(true);
+  };
+
+
   // Render appropriate simulation based on mission type
   const renderSimulation = () => {
     if (!missionData) return null;
@@ -192,9 +222,7 @@ export default function Realm3Missions() {
     );
   }
 
-  function handleStartChallenge(event: React.MouseEvent<HTMLButtonElement>): void {
-    throw new Error('Function not implemented.');
-  }
+ 
 
   return (
     <div 
@@ -231,6 +259,21 @@ export default function Realm3Missions() {
           Mission complete! Great job! Redirecting to Realm...
         </div>
       )}
+
+       {/* Mission not found message */}
+       {!missionData && (
+        <div className="max-w-4xl mx-auto bg-orange-100 border-2 border-orange-500 p-6 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold text-orange-900 mb-2">Mission Not Found</h2>
+          <p className="text-orange-800 mb-4">This mission doesn't exist yet or may have been moved.</p>
+          <button 
+            onClick={() => setLocation('/realm/4')} 
+            className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded transition-colors"
+          >
+            Return to Realm
+          </button>
+        </div>
+      )}
+
 
       {/* Mission content */}
       {missionData && <main className="max-w-4xl mx-auto">
@@ -284,3 +327,4 @@ export default function Realm3Missions() {
     </div>
   );
 }
+
