@@ -23,6 +23,8 @@ export interface Question {
 }
 
 export interface MissionContent {
+  description: string;
+  objectives: string[];
   id: number;
   title: string;
   subtitle?: string;
@@ -44,7 +46,7 @@ export const realm3Missions: MissionContent[] = [
     subtitle: "The Trustless Revolution",
     simulationType: "cryptography",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -115,8 +117,8 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/trustless-simulator'; }
       }, [
@@ -127,7 +129,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Excellent! You now understand the foundational principles that make Bitcoin a trustless, decentralized system."
+    completionMessage: "Excellent! You now understand the foundational principles that make Bitcoin a trustless, decentralized system.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -137,7 +141,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/769917eddc6ee5ee6bf70d4b3468bc2d3751f70a7fbc84c9ccf43c5a46bcb068?w=530&h=260",
     simulationType: "cryptography",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/digitalchains.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -200,16 +204,16 @@ export const realm3Missions: MissionContent[] = [
         "Bitcoin keys and addresses can be represented in different formats for different purposes:"
       ),
       React.createElement('ul', { className: "list-disc ml-6 mb-4 space-y-2", key: "formats-list" }, [
-        React.createElement('li', { key: "format1" }, 
-          React.createElement('strong', null, "Hexadecimal: "), 
+        React.createElement('li', { key: "format1" },
+          React.createElement('strong', null, "Hexadecimal: "),
           "Raw format using 0-9 and A-F characters. Used internally by software."
         ),
-        React.createElement('li', { key: "format2" }, 
-          React.createElement('strong', null, "WIF (Wallet Import Format): "), 
+        React.createElement('li', { key: "format2" },
+          React.createElement('strong', null, "WIF (Wallet Import Format): "),
           "User-friendly format starting with 'L' or 'K' for private keys. Includes error checking."
         ),
-        React.createElement('li', { key: "format3" }, 
-          React.createElement('strong', null, "Base58Check: "), 
+        React.createElement('li', { key: "format3" },
+          React.createElement('strong', null, "Base58Check: "),
           "Encoding for addresses that excludes confusing characters (0, O, I, l) and includes checksum."
         )
       ]),
@@ -227,8 +231,8 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "warn4" }, "You can't truly verify your Bitcoin balance without the keys")
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/keys-simulator'; }
       }, [
@@ -239,7 +243,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Perfect! You now understand the cryptographic foundation of Bitcoin ownership and the importance of controlling your own keys."
+    completionMessage: "Perfect! You now understand the cryptographic foundation of Bitcoin ownership and the importance of controlling your own keys.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -249,7 +255,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/c2b62867b49bdb1cf9109cc3e99fae057b70ba0ab65f7334ef518d3427665c5e?w=530&h=260",
     simulationType: "hashing",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -335,28 +341,28 @@ export const realm3Missions: MissionContent[] = [
         "A Bitcoin transaction goes through several stages from creation to final confirmation:"
       ),
       React.createElement('ol', { className: "list-decimal ml-6 mb-4 space-y-2", key: "lifecycle-steps" }, [
-        React.createElement('li', { key: "step1" }, 
-          React.createElement('strong', null, "Creation: "), 
+        React.createElement('li', { key: "step1" },
+          React.createElement('strong', null, "Creation: "),
           "Wallet constructs transaction with inputs, outputs, and signs with private keys"
         ),
-        React.createElement('li', { key: "step2" }, 
-          React.createElement('strong', null, "Broadcast: "), 
+        React.createElement('li', { key: "step2" },
+          React.createElement('strong', null, "Broadcast: "),
           "Transaction is sent to the Bitcoin network and propagates to nodes"
         ),
-        React.createElement('li', { key: "step3" }, 
-          React.createElement('strong', null, "Mempool: "), 
+        React.createElement('li', { key: "step3" },
+          React.createElement('strong', null, "Mempool: "),
           "Nodes validate the transaction and add it to their memory pool"
         ),
-        React.createElement('li', { key: "step4" }, 
-          React.createElement('strong', null, "Mining: "), 
+        React.createElement('li', { key: "step4" },
+          React.createElement('strong', null, "Mining: "),
           "Miners select the transaction for inclusion in a block"
         ),
-        React.createElement('li', { key: "step5" }, 
-          React.createElement('strong', null, "Confirmation: "), 
+        React.createElement('li', { key: "step5" },
+          React.createElement('strong', null, "Confirmation: "),
           "Transaction is included in a block and confirmed by the network"
         ),
-        React.createElement('li', { key: "step6" }, 
-          React.createElement('strong', null, "Finality: "), 
+        React.createElement('li', { key: "step6" },
+          React.createElement('strong', null, "Finality: "),
           "After several confirmations, transaction is considered irreversible"
         )
       ]),
@@ -378,21 +384,21 @@ export const realm3Missions: MissionContent[] = [
       ]),
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "advanced" }, "Advanced Features: Dust, RBF, and SegWit"),
       React.createElement('ul', { className: "list-disc ml-6 mb-4 space-y-2", key: "advanced-features" }, [
-        React.createElement('li', { key: "dust" }, 
-          React.createElement('strong', null, "Dust: "), 
+        React.createElement('li', { key: "dust" },
+          React.createElement('strong', null, "Dust: "),
           "UTXOs so small that they cost more in fees to spend than they're worth. Most nodes reject dust outputs."
         ),
-        React.createElement('li', { key: "rbf" }, 
-          React.createElement('strong', null, "RBF (Replace-By-Fee): "), 
+        React.createElement('li', { key: "rbf" },
+          React.createElement('strong', null, "RBF (Replace-By-Fee): "),
           "Allows replacing an unconfirmed transaction with a higher-fee version to speed up confirmation."
         ),
-        React.createElement('li', { key: "segwit" }, 
-          React.createElement('strong', null, "SegWit: "), 
+        React.createElement('li', { key: "segwit" },
+          React.createElement('strong', null, "SegWit: "),
           "Separates signature data from transaction data, reducing transaction size and enabling new features."
         )
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/transaction-simulator'; }
       }, [
@@ -403,7 +409,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Outstanding! You now understand how Bitcoin transactions work at a deep technical level and can reason about UTXOs, scripts, and fees."
+    completionMessage: "Outstanding! You now understand how Bitcoin transactions work at a deep technical level and can reason about UTXOs, scripts, and fees.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -412,7 +420,7 @@ export const realm3Missions: MissionContent[] = [
     subtitle: "Bitcoin's Programming Language",
     simulationType: "merkletree",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -502,16 +510,16 @@ export const realm3Missions: MissionContent[] = [
         "Script supports time-based conditions, allowing Bitcoin to be locked until specific times or block heights:"
       ),
       React.createElement('ul', { className: "list-disc ml-6 mb-4 space-y-2", key: "timelock-list" }, [
-        React.createElement('li', { key: "timelock1" }, 
-          React.createElement('strong', null, "OP_CHECKLOCKTIMEVERIFY (CLTV): "), 
+        React.createElement('li', { key: "timelock1" },
+          React.createElement('strong', null, "OP_CHECKLOCKTIMEVERIFY (CLTV): "),
           "Prevents spending until a specific time or block height"
         ),
-        React.createElement('li', { key: "timelock2" }, 
-          React.createElement('strong', null, "OP_CHECKSEQUENCEVERIFY (CSV): "), 
+        React.createElement('li', { key: "timelock2" },
+          React.createElement('strong', null, "OP_CHECKSEQUENCEVERIFY (CSV): "),
           "Requires a relative time delay from when the UTXO was created"
         ),
-        React.createElement('li', { key: "timelock3" }, 
-          React.createElement('strong', null, "nLockTime field: "), 
+        React.createElement('li', { key: "timelock3" },
+          React.createElement('strong', null, "nLockTime field: "),
           "Makes entire transaction invalid until specified time"
         )
       ]),
@@ -546,8 +554,8 @@ export const realm3Missions: MissionContent[] = [
         React.createElement('li', { key: "contract3" }, "Payment channels and Lightning Network"),
         React.createElement('li', { key: "contract4" }, "Discreet Log Contracts for financial derivatives")
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/script-simulator'; }
       }, [
@@ -558,7 +566,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Fantastic! You now understand Bitcoin Script and how it enables programmable money through carefully designed constraints."
+    completionMessage: "Fantastic! You now understand Bitcoin Script and how it enables programmable money through carefully designed constraints.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -568,7 +578,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/1534e4562b8d81db405fd9b725fee9e0067de01b1e0903dd13434988beafa612?w=530&h=260",
     simulationType: "cryptography",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -638,7 +648,7 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('div', { className: "space-y-4 mb-4", key: "bip-standards" }, [
         React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4", key: "bip32" }, [
           React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "bip32-title" }, "BIP32: Hierarchical Deterministic Wallets"),
-          React.createElement('p', { className: "text-sm mb-2", key: "bip32-desc" }, 
+          React.createElement('p', { className: "text-sm mb-2", key: "bip32-desc" },
             "Defines how to derive unlimited keys from a master key using mathematical relationships."
           ),
           React.createElement('code', { className: "text-xs bg-gray-800 p-2 rounded block", key: "bip32-code" },
@@ -647,7 +657,7 @@ export const realm3Missions: MissionContent[] = [
         ]),
         React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4", key: "bip39" }, [
           React.createElement('h4', { className: "font-semibold mb-2 text-purple-300", key: "bip39-title" }, "BIP39: Mnemonic Seed Phrases"),
-          React.createElement('p', { className: "text-sm mb-2", key: "bip39-desc" }, 
+          React.createElement('p', { className: "text-sm mb-2", key: "bip39-desc" },
             "Converts random entropy into human-readable word lists for wallet backup and recovery."
           ),
           React.createElement('code', { className: "text-xs bg-gray-800 p-2 rounded block", key: "bip39-code" },
@@ -656,7 +666,7 @@ export const realm3Missions: MissionContent[] = [
         ]),
         React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4", key: "bip44" }, [
           React.createElement('h4', { className: "font-semibold mb-2 text-orange-300", key: "bip44-title" }, "BIP44: Multi-Account Hierarchy"),
-          React.createElement('p', { className: "text-sm mb-2", key: "bip44-desc" }, 
+          React.createElement('p', { className: "text-sm mb-2", key: "bip44-desc" },
             "Defines a standard structure for organizing accounts and addresses within HD wallets."
           ),
           React.createElement('code', { className: "text-xs bg-gray-800 p-2 rounded block", key: "bip44-code" },
@@ -694,20 +704,20 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('div', { className: "bg-gray-900/50 border border-gray-700 rounded-lg p-4 mb-4", key: "path-example" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-gray-300", key: "path-title" }, "Standard Derivation Paths"),
         React.createElement('div', { className: "space-y-2 text-sm font-mono", key: "path-examples" }, [
-          React.createElement('div', { key: "path1" }, 
-            React.createElement('span', { className: "text-blue-400" }, "m/44'/0'/0'/0/0"), 
+          React.createElement('div', { key: "path1" },
+            React.createElement('span', { className: "text-blue-400" }, "m/44'/0'/0'/0/0"),
             " - First receiving address (BIP44)"
           ),
-          React.createElement('div', { key: "path2" }, 
-            React.createElement('span', { className: "text-green-400" }, "m/44'/0'/0'/1/0"), 
+          React.createElement('div', { key: "path2" },
+            React.createElement('span', { className: "text-green-400" }, "m/44'/0'/0'/1/0"),
             " - First change address (BIP44)"
           ),
-          React.createElement('div', { key: "path3" }, 
-            React.createElement('span', { className: "text-purple-400" }, "m/84'/0'/0'/0/0"), 
+          React.createElement('div', { key: "path3" },
+            React.createElement('span', { className: "text-purple-400" }, "m/84'/0'/0'/0/0"),
             " - First SegWit address (BIP84)"
           ),
-          React.createElement('div', { key: "path4" }, 
-            React.createElement('span', { className: "text-orange-400" }, "m/86'/0'/0'/0/0"), 
+          React.createElement('div', { key: "path4" },
+            React.createElement('span', { className: "text-orange-400" }, "m/86'/0'/0'/0/0"),
             " - First Taproot address (BIP86)"
           )
         ])
@@ -722,8 +732,8 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "comp5" }, React.createElement('strong', null, "Index (0,1,2...): "), "Sequential address number")
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/wallet-simulator'; }
       }, [
@@ -734,7 +744,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Excellent! You now understand the sophisticated key management systems that make Bitcoin wallets secure and user-friendly."
+    completionMessage: "Excellent! You now understand the sophisticated key management systems that make Bitcoin wallets secure and user-friendly.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -744,7 +756,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/769917eddc6ee5ee6bf70d4b3468bc2d3751f70a7fbc84c9ccf43c5a46bcb068?w=530&h=260",
     simulationType: "hashing",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -872,8 +884,8 @@ export const realm3Missions: MissionContent[] = [
           )
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/mempool-simulator'; }
       }, [
@@ -884,7 +896,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Great work! You now understand how the mempool operates and can make informed decisions about transaction fees and timing."
+    completionMessage: "Great work! You now understand how the mempool operates and can make informed decisions about transaction fees and timing.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -894,7 +908,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/c2b62867b49bdb1cf9109cc3e99fae057b70ba0ab65f7334ef518d3427665c5e?w=530&h=260",
     simulationType: "consensus",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Consensus-Grove.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -928,10 +942,10 @@ export const realm3Missions: MissionContent[] = [
         React.createElement('div', { className: "space-y-2 text-sm font-mono", key: "chain-example" }, [
           React.createElement('div', { key: "chain1" }, "Chain A: Block 1 → Block 2 → Block 3 → Block 4"),
           React.createElement('div', { key: "chain2" }, "Chain B: Block 1 → Block 2 → Block 3'"),
-          React.createElement('div', { className: "text-green-400 mt-2", key: "winner" }, 
+          React.createElement('div', { className: "text-green-400 mt-2", key: "winner" },
             "✓ Chain A wins (longer chain with more accumulated work)"
           ),
-          React.createElement('div', { className: "text-red-400", key: "loser" }, 
+          React.createElement('div', { className: "text-red-400", key: "loser" },
             "✗ Chain B becomes orphaned"
           )
         ])
@@ -1028,8 +1042,8 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/consensus-simulator'; }
       }, [
@@ -1040,7 +1054,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Impressive! You now understand how Bitcoin achieves global consensus without central authority through cryptographic proofs and economic incentives."
+    completionMessage: "Impressive! You now understand how Bitcoin achieves global consensus without central authority through cryptographic proofs and economic incentives.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -1049,196 +1065,198 @@ export const realm3Missions: MissionContent[] = [
     subtitle: "The Backbone of the Network",
     imagePath: "https://pfst.cf2.poecdn.net/base/image/bb335542e432a300e466ac9097a60f6846416a65736bf3293241432555cba028?w=530&h=260",
     simulationType: "merkletree",
-    content: createContent([ React.createElement("img", { 
+    content: createContent([React.createElement("img", {
       src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Forest-Network-Resilience.png",
       alt: "Everyday Bitcoin Tools",
       className: "w-full h-48 object-cover rounded-lg mb-4"
     }),
-      React.createElement('p', { className: "mb-4", key: "intro" },
-        "Bitcoin nodes are the individual computers that collectively form the Bitcoin network. Each node validates " +
-        "transactions, stores blockchain data, and helps propagate information across the network. Understanding " +
-        "different node types and their roles is crucial to understanding Bitcoin's decentralization."
-      ),
-      React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "node-types" }, "Types of Bitcoin Nodes"),
-      React.createElement('p', { className: "mb-4", key: "types-desc" },
-        "Different types of nodes serve different functions in the Bitcoin ecosystem, each with varying levels of " +
-        "validation, storage, and resource requirements."
-      ),
-      React.createElement('div', { className: "space-y-4 mb-4", key: "node-types-details" }, [
-        React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4", key: "full-node" }, [
-          React.createElement('h4', { className: "font-semibold mb-2 text-green-300", key: "full-title" }, "Full Nodes"),
-          React.createElement('p', { className: "text-sm mb-2", key: "full-desc" },
-            "Download, validate, and store the complete blockchain with all transaction history."
-          ),
-          React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "full-grid" }, [
-            React.createElement('div', { key: "full-features" }, [
-              React.createElement('h5', { className: "font-semibold text-green-200 mb-1", key: "full-features-title" }, "Features:"),
-              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "full-features-list" }, [
-                React.createElement('li', { key: "feature1" }, "Complete transaction validation"),
-                React.createElement('li', { key: "feature2" }, "Independent verification"),
-                React.createElement('li', { key: "feature3" }, "Full network participation"),
-                React.createElement('li', { key: "feature4" }, "Maximum security and privacy")
-              ])
-            ]),
-            React.createElement('div', { key: "full-requirements" }, [
-              React.createElement('h5', { className: "font-semibold text-red-200 mb-1", key: "full-req-title" }, "Requirements:"),
-              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "full-req-list" }, [
-                React.createElement('li', { key: "req1" }, "~500GB+ storage space"),
-                React.createElement('li', { key: "req2" }, "Reliable internet connection"),
-                React.createElement('li', { key: "req3" }, "Several days initial sync"),
-                React.createElement('li', { key: "req4" }, "Ongoing bandwidth usage")
-              ])
-            ])
-          ])
-        ]),
-        React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4", key: "pruned-node" }, [
-          React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "pruned-title" }, "Pruned Nodes"),
-          React.createElement('p', { className: "text-sm mb-2", key: "pruned-desc" },
-            "Full validation but only store recent blockchain data to save storage space."
-          ),
-          React.createElement('div', { className: "text-xs text-gray-300", key: "pruned-note" },
-            "Validates all transactions but deletes old block data after verification. Still contributes to network security."
-          )
-        ]),
-        React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4", key: "spv-node" }, [
-          React.createElement('h4', { className: "font-semibold mb-2 text-purple-300", key: "spv-title" }, "SPV (Simplified Payment Verification) Nodes"),
-          React.createElement('p', { className: "text-sm mb-2", key: "spv-desc" },
-            "Lightweight clients that download block headers and verify transactions using Merkle proofs."
-          ),
-          React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "spv-grid" }, [
-            React.createElement('div', { key: "spv-pros" }, [
-              React.createElement('h5', { className: "font-semibold text-green-200 mb-1", key: "spv-pros-title" }, "Advantages:"),
-              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "spv-pros-list" }, [
-                React.createElement('li', { key: "pro1" }, "Low storage requirements"),
-                React.createElement('li', { key: "pro2" }, "Fast synchronization"),
-                React.createElement('li', { key: "pro3" }, "Mobile-friendly"),
-                React.createElement('li', { key: "pro4" }, "Lower bandwidth usage")
-              ])
-            ]),
-            React.createElement('div', { key: "spv-cons" }, [
-              React.createElement('h5', { className: "font-semibold text-red-200 mb-1", key: "spv-cons-title" }, "Limitations:"),
-              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "spv-cons-list" }, [
-                React.createElement('li', { key: "con1" }, "Relies on other nodes"),
-                React.createElement('li', { key: "con2" }, "Reduced privacy"),
-                React.createElement('li', { key: "con3" }, "Cannot validate all rules"),
-                React.createElement('li', { key: "con4" }, "Vulnerable to some attacks")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "validation" }, "How Nodes Verify Transactions and Blocks"),
-      React.createElement('p', { className: "mb-4", key: "validation-desc" },
-        "When a node receives a new transaction or block, it performs extensive validation to ensure compliance " +
-        "with Bitcoin's consensus rules before accepting or relaying it."
-      ),
-      React.createElement('div', { className: "bg-gray-900/50 border border-gray-700 rounded-lg p-4 mb-4", key: "validation-process" }, [
-        React.createElement('h4', { className: "font-semibold mb-2 text-gray-300", key: "validation-title" }, "Transaction Validation Process"),
-        React.createElement('ol', { className: "list-decimal ml-4 space-y-1 text-sm", key: "validation-steps" }, [
-          React.createElement('li', { key: "val1" }, "Check transaction format and structure"),
-          React.createElement('li', { key: "val2" }, "Verify digital signatures using public keys"),
-          React.createElement('li', { key: "val3" }, "Confirm all inputs reference existing UTXOs"),
-          React.createElement('li', { key: "val4" }, "Ensure inputs haven't been spent elsewhere"),
-          React.createElement('li', { key: "val5" }, "Validate that input amounts ≥ output amounts"),
-          React.createElement('li', { key: "val6" }, "Execute and verify all scripts"),
-          React.createElement('li', { key: "val7" }, "Check transaction against policy rules"),
-          React.createElement('li', { key: "val8" }, "Add to mempool if valid, reject if invalid")
-        ])
-      ]),
-      React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "bitcoin-core" }, "Bitcoin Core: The Reference Implementation"),
-      React.createElement('p', { className: "mb-4", key: "core-desc" },
-        "Bitcoin Core is the most widely used Bitcoin node software, serving as the reference implementation " +
-        "that defines Bitcoin's consensus rules. Understanding its role and features is important for the ecosystem."
-      ),
-      React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "core-features" }, [
-        React.createElement('h4', { className: "font-semibold mb-2 text-orange-300", key: "core-features-title" }, "Bitcoin Core Features"),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "core-grid" }, [
-          React.createElement('div', { key: "core-node" }, [
-            React.createElement('h5', { className: "font-semibold mb-1 text-orange-200", key: "node-title" }, "Node Functions:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "node-functions" }, [
-              React.createElement('li', { key: "func1" }, "Full blockchain validation"),
-              React.createElement('li', { key: "func2" }, "Transaction relay"),
-              React.createElement('li', { key: "func3" }, "Block propagation"),
-              React.createElement('li', { key: "func4" }, "Network peer discovery")
+    React.createElement('p', { className: "mb-4", key: "intro" },
+      "Bitcoin nodes are the individual computers that collectively form the Bitcoin network. Each node validates " +
+      "transactions, stores blockchain data, and helps propagate information across the network. Understanding " +
+      "different node types and their roles is crucial to understanding Bitcoin's decentralization."
+    ),
+    React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "node-types" }, "Types of Bitcoin Nodes"),
+    React.createElement('p', { className: "mb-4", key: "types-desc" },
+      "Different types of nodes serve different functions in the Bitcoin ecosystem, each with varying levels of " +
+      "validation, storage, and resource requirements."
+    ),
+    React.createElement('div', { className: "space-y-4 mb-4", key: "node-types-details" }, [
+      React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4", key: "full-node" }, [
+        React.createElement('h4', { className: "font-semibold mb-2 text-green-300", key: "full-title" }, "Full Nodes"),
+        React.createElement('p', { className: "text-sm mb-2", key: "full-desc" },
+          "Download, validate, and store the complete blockchain with all transaction history."
+        ),
+        React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "full-grid" }, [
+          React.createElement('div', { key: "full-features" }, [
+            React.createElement('h5', { className: "font-semibold text-green-200 mb-1", key: "full-features-title" }, "Features:"),
+            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "full-features-list" }, [
+              React.createElement('li', { key: "feature1" }, "Complete transaction validation"),
+              React.createElement('li', { key: "feature2" }, "Independent verification"),
+              React.createElement('li', { key: "feature3" }, "Full network participation"),
+              React.createElement('li', { key: "feature4" }, "Maximum security and privacy")
             ])
           ]),
-          React.createElement('div', { key: "core-wallet" }, [
-            React.createElement('h5', { className: "font-semibold mb-1 text-orange-200", key: "wallet-title" }, "Wallet Functions:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "wallet-functions" }, [
-              React.createElement('li', { key: "wfunc1" }, "Key management"),
-              React.createElement('li', { key: "wfunc2" }, "Transaction creation"),
-              React.createElement('li', { key: "wfunc3" }, "Balance calculation"),
-              React.createElement('li', { key: "wfunc4" }, "Address generation")
+          React.createElement('div', { key: "full-requirements" }, [
+            React.createElement('h5', { className: "font-semibold text-red-200 mb-1", key: "full-req-title" }, "Requirements:"),
+            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "full-req-list" }, [
+              React.createElement('li', { key: "req1" }, "~500GB+ storage space"),
+              React.createElement('li', { key: "req2" }, "Reliable internet connection"),
+              React.createElement('li', { key: "req3" }, "Several days initial sync"),
+              React.createElement('li', { key: "req4" }, "Ongoing bandwidth usage")
             ])
           ])
         ])
       ]),
-      React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "running-node" }, "Running Your Own Node"),
-      React.createElement('p', { className: "mb-4", key: "running-desc" },
-        "Operating your own Bitcoin node provides maximum security, privacy, and independence. It also contributes " +
-        "to the network's decentralization and resilience."
-      ),
-      React.createElement('div', { className: "grid md:grid-cols-2 gap-4 mb-4", key: "running-grid" }, [
-        React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4", key: "benefits" }, [
-          React.createElement('h4', { className: "font-semibold mb-2 text-green-300", key: "benefits-title" }, "Benefits of Running a Node"),
-          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "benefits-list" }, [
-            React.createElement('li', { key: "benefit1" }, "Verify transactions independently"),
-            React.createElement('li', { key: "benefit2" }, "No need to trust third parties"),
-            React.createElement('li', { key: "benefit3" }, "Enhanced privacy"),
-            React.createElement('li', { key: "benefit4" }, "Support network decentralization"),
-            React.createElement('li', { key: "benefit5" }, "Direct access to blockchain data")
-          ])
-        ]),
-        React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4", key: "considerations" }, [
-          React.createElement('h4', { className: "font-semibold mb-2 text-yellow-300", key: "considerations-title" }, "Setup Considerations"),
-          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "considerations-list" }, [
-            React.createElement('li', { key: "consider1" }, "Initial blockchain download (~400GB)"),
-            React.createElement('li', { key: "consider2" }, "Ongoing bandwidth usage"),
-            React.createElement('li', { key: "consider3" }, "Hardware requirements"),
-            React.createElement('li', { key: "consider4" }, "24/7 operation preferred"),
-            React.createElement('li', { key: "consider5" }, "Regular software updates")
-          ])
-        ])
-      ]),
-      React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "p2p-protocols" }, "P2P Network Protocols"),
-      React.createElement('p', { className: "mb-4", key: "p2p-desc" },
-        "Bitcoin nodes communicate using a peer-to-peer protocol that enables decentralized information sharing " +
-        "without relying on central servers."
-      ),
-      React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "p2p-messages" }, [
-        React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "messages-title" }, "Key P2P Messages"),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "messages-grid" }, [
-          React.createElement('div', { key: "connection-msgs" }, [
-            React.createElement('h5', { className: "font-semibold mb-1 text-blue-200", key: "conn-title" }, "Connection:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "conn-list" }, [
-              React.createElement('li', { key: "conn1" }, React.createElement('code', null, "version"), " - Node capabilities"),
-              React.createElement('li', { key: "conn2" }, React.createElement('code', null, "verack"), " - Version acknowledgment"),
-              React.createElement('li', { key: "conn3" }, React.createElement('code', null, "ping/pong"), " - Keep connection alive")
-            ])
-          ]),
-          React.createElement('div', { key: "data-msgs" }, [
-            React.createElement('h5', { className: "font-semibold mb-1 text-blue-200", key: "data-title" }, "Data Sharing:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "data-list" }, [
-              React.createElement('li', { key: "data1" }, React.createElement('code', null, "inv"), " - Inventory of available data"),
-              React.createElement('li', { key: "data2" }, React.createElement('code', null, "getdata"), " - Request specific data"),
-              React.createElement('li', { key: "data3" }, React.createElement('code', null, "tx/block"), " - Transaction/block data")
-            ])
-          ])
-        ])
-      ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
-        key: "challenge-box",
-        onClick: () => { window.location.href = '/realm3/node-simulator'; }
-      }, [
-        React.createElement('h4', { className: "text-lg font-semibold mb-2 text-blue-400", key: "challenge-title" }, "🖥️ Interactive Challenge: Operate Your Virtual Node"),
-        React.createElement('p', { key: "challenge-desc" },
-          "Set up and operate different types of Bitcoin nodes. Experience transaction validation, block propagation, " +
-          "and peer-to-peer networking. Compare the capabilities and resource requirements of various node types."
+      React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4", key: "pruned-node" }, [
+        React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "pruned-title" }, "Pruned Nodes"),
+        React.createElement('p', { className: "text-sm mb-2", key: "pruned-desc" },
+          "Full validation but only store recent blockchain data to save storage space."
+        ),
+        React.createElement('div', { className: "text-xs text-gray-300", key: "pruned-note" },
+          "Validates all transactions but deletes old block data after verification. Still contributes to network security."
         )
+      ]),
+      React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4", key: "spv-node" }, [
+        React.createElement('h4', { className: "font-semibold mb-2 text-purple-300", key: "spv-title" }, "SPV (Simplified Payment Verification) Nodes"),
+        React.createElement('p', { className: "text-sm mb-2", key: "spv-desc" },
+          "Lightweight clients that download block headers and verify transactions using Merkle proofs."
+        ),
+        React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "spv-grid" }, [
+          React.createElement('div', { key: "spv-pros" }, [
+            React.createElement('h5', { className: "font-semibold text-green-200 mb-1", key: "spv-pros-title" }, "Advantages:"),
+            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "spv-pros-list" }, [
+              React.createElement('li', { key: "pro1" }, "Low storage requirements"),
+              React.createElement('li', { key: "pro2" }, "Fast synchronization"),
+              React.createElement('li', { key: "pro3" }, "Mobile-friendly"),
+              React.createElement('li', { key: "pro4" }, "Lower bandwidth usage")
+            ])
+          ]),
+          React.createElement('div', { key: "spv-cons" }, [
+            React.createElement('h5', { className: "font-semibold text-red-200 mb-1", key: "spv-cons-title" }, "Limitations:"),
+            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "spv-cons-list" }, [
+              React.createElement('li', { key: "con1" }, "Relies on other nodes"),
+              React.createElement('li', { key: "con2" }, "Reduced privacy"),
+              React.createElement('li', { key: "con3" }, "Cannot validate all rules"),
+              React.createElement('li', { key: "con4" }, "Vulnerable to some attacks")
+            ])
+          ])
+        ])
       ])
     ]),
-    completionMessage: "Excellent! You now understand how Bitcoin nodes form the decentralized backbone that validates and secures the entire network."
+    React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "validation" }, "How Nodes Verify Transactions and Blocks"),
+    React.createElement('p', { className: "mb-4", key: "validation-desc" },
+      "When a node receives a new transaction or block, it performs extensive validation to ensure compliance " +
+      "with Bitcoin's consensus rules before accepting or relaying it."
+    ),
+    React.createElement('div', { className: "bg-gray-900/50 border border-gray-700 rounded-lg p-4 mb-4", key: "validation-process" }, [
+      React.createElement('h4', { className: "font-semibold mb-2 text-gray-300", key: "validation-title" }, "Transaction Validation Process"),
+      React.createElement('ol', { className: "list-decimal ml-4 space-y-1 text-sm", key: "validation-steps" }, [
+        React.createElement('li', { key: "val1" }, "Check transaction format and structure"),
+        React.createElement('li', { key: "val2" }, "Verify digital signatures using public keys"),
+        React.createElement('li', { key: "val3" }, "Confirm all inputs reference existing UTXOs"),
+        React.createElement('li', { key: "val4" }, "Ensure inputs haven't been spent elsewhere"),
+        React.createElement('li', { key: "val5" }, "Validate that input amounts ≥ output amounts"),
+        React.createElement('li', { key: "val6" }, "Execute and verify all scripts"),
+        React.createElement('li', { key: "val7" }, "Check transaction against policy rules"),
+        React.createElement('li', { key: "val8" }, "Add to mempool if valid, reject if invalid")
+      ])
+    ]),
+    React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "bitcoin-core" }, "Bitcoin Core: The Reference Implementation"),
+    React.createElement('p', { className: "mb-4", key: "core-desc" },
+      "Bitcoin Core is the most widely used Bitcoin node software, serving as the reference implementation " +
+      "that defines Bitcoin's consensus rules. Understanding its role and features is important for the ecosystem."
+    ),
+    React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "core-features" }, [
+      React.createElement('h4', { className: "font-semibold mb-2 text-orange-300", key: "core-features-title" }, "Bitcoin Core Features"),
+      React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "core-grid" }, [
+        React.createElement('div', { key: "core-node" }, [
+          React.createElement('h5', { className: "font-semibold mb-1 text-orange-200", key: "node-title" }, "Node Functions:"),
+          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "node-functions" }, [
+            React.createElement('li', { key: "func1" }, "Full blockchain validation"),
+            React.createElement('li', { key: "func2" }, "Transaction relay"),
+            React.createElement('li', { key: "func3" }, "Block propagation"),
+            React.createElement('li', { key: "func4" }, "Network peer discovery")
+          ])
+        ]),
+        React.createElement('div', { key: "core-wallet" }, [
+          React.createElement('h5', { className: "font-semibold mb-1 text-orange-200", key: "wallet-title" }, "Wallet Functions:"),
+          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "wallet-functions" }, [
+            React.createElement('li', { key: "wfunc1" }, "Key management"),
+            React.createElement('li', { key: "wfunc2" }, "Transaction creation"),
+            React.createElement('li', { key: "wfunc3" }, "Balance calculation"),
+            React.createElement('li', { key: "wfunc4" }, "Address generation")
+          ])
+        ])
+      ])
+    ]),
+    React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "running-node" }, "Running Your Own Node"),
+    React.createElement('p', { className: "mb-4", key: "running-desc" },
+      "Operating your own Bitcoin node provides maximum security, privacy, and independence. It also contributes " +
+      "to the network's decentralization and resilience."
+    ),
+    React.createElement('div', { className: "grid md:grid-cols-2 gap-4 mb-4", key: "running-grid" }, [
+      React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4", key: "benefits" }, [
+        React.createElement('h4', { className: "font-semibold mb-2 text-green-300", key: "benefits-title" }, "Benefits of Running a Node"),
+        React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "benefits-list" }, [
+          React.createElement('li', { key: "benefit1" }, "Verify transactions independently"),
+          React.createElement('li', { key: "benefit2" }, "No need to trust third parties"),
+          React.createElement('li', { key: "benefit3" }, "Enhanced privacy"),
+          React.createElement('li', { key: "benefit4" }, "Support network decentralization"),
+          React.createElement('li', { key: "benefit5" }, "Direct access to blockchain data")
+        ])
+      ]),
+      React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4", key: "considerations" }, [
+        React.createElement('h4', { className: "font-semibold mb-2 text-yellow-300", key: "considerations-title" }, "Setup Considerations"),
+        React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "considerations-list" }, [
+          React.createElement('li', { key: "consider1" }, "Initial blockchain download (~400GB)"),
+          React.createElement('li', { key: "consider2" }, "Ongoing bandwidth usage"),
+          React.createElement('li', { key: "consider3" }, "Hardware requirements"),
+          React.createElement('li', { key: "consider4" }, "24/7 operation preferred"),
+          React.createElement('li', { key: "consider5" }, "Regular software updates")
+        ])
+      ])
+    ]),
+    React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "p2p-protocols" }, "P2P Network Protocols"),
+    React.createElement('p', { className: "mb-4", key: "p2p-desc" },
+      "Bitcoin nodes communicate using a peer-to-peer protocol that enables decentralized information sharing " +
+      "without relying on central servers."
+    ),
+    React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "p2p-messages" }, [
+      React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "messages-title" }, "Key P2P Messages"),
+      React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "messages-grid" }, [
+        React.createElement('div', { key: "connection-msgs" }, [
+          React.createElement('h5', { className: "font-semibold mb-1 text-blue-200", key: "conn-title" }, "Connection:"),
+          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "conn-list" }, [
+            React.createElement('li', { key: "conn1" }, React.createElement('code', null, "version"), " - Node capabilities"),
+            React.createElement('li', { key: "conn2" }, React.createElement('code', null, "verack"), " - Version acknowledgment"),
+            React.createElement('li', { key: "conn3" }, React.createElement('code', null, "ping/pong"), " - Keep connection alive")
+          ])
+        ]),
+        React.createElement('div', { key: "data-msgs" }, [
+          React.createElement('h5', { className: "font-semibold mb-1 text-blue-200", key: "data-title" }, "Data Sharing:"),
+          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-xs", key: "data-list" }, [
+            React.createElement('li', { key: "data1" }, React.createElement('code', null, "inv"), " - Inventory of available data"),
+            React.createElement('li', { key: "data2" }, React.createElement('code', null, "getdata"), " - Request specific data"),
+            React.createElement('li', { key: "data3" }, React.createElement('code', null, "tx/block"), " - Transaction/block data")
+          ])
+        ])
+      ])
+    ]),
+    React.createElement('div', {
+      className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
+      key: "challenge-box",
+      onClick: () => { window.location.href = '/realm3/node-simulator'; }
+    }, [
+      React.createElement('h4', { className: "text-lg font-semibold mb-2 text-blue-400", key: "challenge-title" }, "🖥️ Interactive Challenge: Operate Your Virtual Node"),
+      React.createElement('p', { key: "challenge-desc" },
+        "Set up and operate different types of Bitcoin nodes. Experience transaction validation, block propagation, " +
+        "and peer-to-peer networking. Compare the capabilities and resource requirements of various node types."
+      )
+    ])
+    ]),
+    completionMessage: "Excellent! You now understand how Bitcoin nodes form the decentralized backbone that validates and secures the entire network.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -1248,7 +1266,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/1534e4562b8d81db405fd9b725fee9e0067de01b1e0903dd13434988beafa612?w=530&h=260",
     simulationType: "consensus",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-5-History-Forks.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -1414,8 +1432,8 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "effect5" }, "Market valuation and liquidity")
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/forks-simulator'; }
       }, [
@@ -1426,7 +1444,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Outstanding! You now understand how Bitcoin evolves through forks while balancing innovation with network stability."
+    completionMessage: "Outstanding! You now understand how Bitcoin evolves through forks while balancing innovation with network stability.",
+    description: '',
+    objectives: []
   },
 
   {
@@ -1436,7 +1456,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/769917eddc6ee5ee6bf70d4b3468bc2d3751f70a7fbc84c9ccf43c5a46bcb068?w=530&h=260",
     simulationType: "hashing",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -1609,8 +1629,8 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "sch5" }, React.createElement('strong', null, "Batch Verification: "), "Faster validation of multiple signatures")
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/scaling-simulator'; }
       }, [
@@ -1621,7 +1641,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Exceptional work! You now understand Bitcoin's scaling challenges and the innovative solutions being developed to address them."
+    completionMessage: "Exceptional work! You now understand Bitcoin's scaling challenges and the innovative solutions being developed to address them.",
+    description: '',
+    objectives: []
   },
   {
     id: 11,
@@ -1630,7 +1652,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/769917eddc6ee5ee6bf70d4b3468bc2d3751f70a7fbc84c9ccf43c5a46bcb068?w=530&h=260",
     simulationType: "lightning",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -1639,7 +1661,7 @@ export const realm3Missions: MissionContent[] = [
         "Bitcoin is powerful, but it's not built for speed. What if we could send Bitcoin in seconds, with almost zero fees? " +
         "Say hello to the Lightning Network -- Bitcoin's Layer 2 upgrade designed for fast, cheap, global payments."
       ),
-      
+
       React.createElement('div', { className: "bg-red-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "problem" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "problem-title" }, "🚨 The Problem: Bitcoin Can't Scale Alone"),
         React.createElement('p', { className: "mb-3", key: "problem-desc" },
@@ -1654,7 +1676,7 @@ export const realm3Missions: MissionContent[] = [
           "Imagine trying to buy coffee or tip a creator -- not practical on-chain."
         )
       ]),
-  
+
       React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "solution" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-300", key: "solution-title" }, "⚡ The Solution: The Lightning Network"),
         React.createElement('p', { className: "mb-3", key: "solution-desc" },
@@ -1664,7 +1686,7 @@ export const realm3Missions: MissionContent[] = [
           "It uses smart contracts to create private \"payment channels\" where users can transact off-chain, then settle on-chain later."
         )
       ]),
-  
+
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "payment-channels" }, "🔄 What's a Payment Channel?"),
       React.createElement('p', { className: "mb-3", key: "channel-intro" },
         "Let's say Alice wants to send Bob Bitcoin frequently. Instead of making 100 on-chain transactions, they:"
@@ -1677,7 +1699,7 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('p', { className: "mb-4 text-sm bg-green-900/20 border border-green-800/30 rounded p-3", key: "channel-benefits" },
         "Each off-chain payment updates their shared balance. No miner fees. No delays. Just instant Bitcoin."
       ),
-  
+
       React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "channel-lifecycle" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-purple-300", key: "lifecycle-title" }, "Payment Channel Lifecycle"),
         React.createElement('div', { className: "grid md:grid-cols-3 gap-3", key: "lifecycle-grid" }, [
@@ -1698,7 +1720,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "network" }, "🔗 Lightning Works Like a Network"),
       React.createElement('p', { className: "mb-3", key: "network-intro" },
         "You don't need a channel with everyone. Lightning routes payments through connected users."
@@ -1709,7 +1731,7 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('p', { className: "mb-4 font-semibold text-blue-300", key: "network-result" },
         "This creates a global, fast, peer-to-peer payment web."
       ),
-  
+
       React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "routing-details" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-orange-300", key: "routing-title" }, "How Payment Routing Works"),
         React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "routing-steps" }, [
@@ -1721,7 +1743,7 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "route6" }, "Payment completes atomically across the route")
         ])
       ]),
-  
+
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "security" }, "🔐 But Is It Secure?"),
       React.createElement('p', { className: "mb-3", key: "security-intro" },
         "Yes! Lightning uses cryptographic tricks to keep everyone honest:"
@@ -1735,7 +1757,7 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('p', { className: "font-semibold text-green-300", key: "security-guarantee" },
         "Your funds are always protected."
       ),
-  
+
       React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4 mb-4", key: "security-mechanisms" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-green-300", key: "mechanisms-title" }, "Security Mechanisms Explained"),
         React.createElement('div', { className: "space-y-3", key: "mechanisms-list" }, [
@@ -1759,7 +1781,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "addresses" }, "📬 Lightning Addresses: Simple, Human-Friendly Payments"),
       React.createElement('p', { className: "mb-3", key: "addresses-intro" },
         "Instead of invoices or QR codes, you can use Lightning Addresses, like an email."
@@ -1770,7 +1792,7 @@ export const realm3Missions: MissionContent[] = [
       React.createElement('p', { className: "mb-4 text-sm", key: "address-explanation" },
         "It points to your Lightning wallet. Anyone can send you BTC instantly."
       ),
-  
+
       React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "ln-ecosystem" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-blue-300", key: "ecosystem-title" }, "Lightning Network Ecosystem"),
         React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "ecosystem-grid" }, [
@@ -1794,7 +1816,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4 mb-4", key: "limitations" }, [
         React.createElement('h4', { className: "font-semibold mb-2 text-yellow-300", key: "limitations-title" }, "Current Limitations & Considerations"),
         React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "limitations-list" }, [
@@ -1805,7 +1827,7 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "lim5" }, React.createElement('strong', null, "Network Effects: "), "Better with more adoption and liquidity")
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4 mb-4", key: "recap" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-green-300", key: "recap-title" }, "✅ Recap: Why Lightning?"),
         React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "recap-list" }, [
@@ -1816,9 +1838,9 @@ export const realm3Missions: MissionContent[] = [
           React.createElement('li', { key: "recap5" }, "Enable micropayments and streaming money 🚀")
         ])
       ]),
-  
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/lightning-simulator'; }
       }, [
@@ -1832,7 +1854,9 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "Amazing! You now understand how the Lightning Network enables instant, cheap Bitcoin payments while maintaining security and decentralization."
+    completionMessage: "Amazing! You now understand how the Lightning Network enables instant, cheap Bitcoin payments while maintaining security and decentralization.",
+    description: '',
+    objectives: []
   },
   {
     id: 12,
@@ -1841,7 +1865,7 @@ export const realm3Missions: MissionContent[] = [
     imagePath: "https://pfst.cf2.poecdn.net/base/image/769917eddc6ee5ee6bf70d4b3468bc2d3751f70a7fbc84c9ccf43c5a46bcb068?w=530&h=260",
     simulationType: "lightning",
     content: createContent([
-      React.createElement("img", { 
+      React.createElement("img", {
         src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-network.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
@@ -1850,7 +1874,7 @@ export const realm3Missions: MissionContent[] = [
         "Bitcoin and Lightning Network work together as a powerful two-layer system. Understanding their differences " +
         "and how they complement each other is essential for using Bitcoin effectively in the modern world."
       ),
-  
+
       React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "base-layer" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-300", key: "base-title" }, "🧱 Understanding the Base Layer (Bitcoin L1)"),
         React.createElement('p', { className: "mb-3", key: "base-intro" },
@@ -1883,7 +1907,7 @@ export const realm3Missions: MissionContent[] = [
           )
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4 mb-4", key: "lightning-layer" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-yellow-300", key: "lightning-title" }, "⚡ Understanding the Lightning Network (Bitcoin L2)"),
         React.createElement('p', { className: "mb-3", key: "lightning-intro" },
@@ -1916,7 +1940,7 @@ export const realm3Missions: MissionContent[] = [
           )
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "comparison" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "comparison-title" }, "⚖️ Direct Comparison"),
         React.createElement('div', { className: "overflow-x-auto", key: "comparison-table" }, [
@@ -1963,7 +1987,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4 mb-4", key: "complement" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-green-300", key: "complement-title" }, "🤝 How They Work Together"),
         React.createElement('p', { className: "mb-3", key: "complement-intro" },
@@ -1999,7 +2023,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-indigo-900/20 border border-indigo-800/30 rounded-lg p-4 mb-4", key: "addresses" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-indigo-300", key: "addresses-title" }, "📧 Address Formats Overview"),
         React.createElement('p', { className: "mb-3", key: "addresses-intro" },
@@ -2042,7 +2066,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-gray-900/20 border border-gray-800/30 rounded-lg p-4 mb-4", key: "infrastructure" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-gray-300", key: "infra-title" }, "🏗️ Infrastructure Differences"),
         React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "infra-grid" }, [
@@ -2068,7 +2092,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "analogy" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-orange-300", key: "analogy-title" }, "🏦 Banking Analogy"),
         React.createElement('div', { className: "p-3 bg-orange-800/20 rounded", key: "analogy-content" }, [
@@ -2097,7 +2121,7 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
+
       React.createElement('div', { className: "bg-red-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "when-to-use" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "when-title" }, "🎯 When to Use Each Layer"),
         React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "when-grid" }, [
@@ -2125,9 +2149,9 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-  
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/lightning-bitcoin-simulator'; }
       }, [
@@ -2146,7 +2170,7 @@ export const realm3Missions: MissionContent[] = [
           "See firsthand why Bitcoin needs both layers to serve as a complete monetary system for the digital age."
         )
       ]),
-  
+
       React.createElement('div', { className: "bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "takeaways" }, [
         React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "takeaways-title" }, "🧠 Key Takeaways"),
         React.createElement('ul', { className: "space-y-2 text-sm", key: "takeaways-list" }, [
@@ -2168,16 +2192,16 @@ export const realm3Missions: MissionContent[] = [
           ])
         ])
       ]),
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
+      React.createElement('div', {
+        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
         key: "challenge-box",
         onClick: () => { window.location.href = '/realm3/lightning-bitcoin-simulator'; }
       }, [
         React.createElement('h4', { className: "text-lg font-semibold mb-2 text-blue-400", key: "challenge-title" }, "🧪 Ready to Try It? Start the Lightning vs Bitcoin Simulation! 🎮"),
         React.createElement('p', { key: "challenge-desc" },
           "Understand why Lightning exists " +
-          "Know when to use on-chain vs Lightning"+
-          "Appreciate how Lightning solves Bitcoin's scaling trilemma"+
+          "Know when to use on-chain vs Lightning" +
+          "Appreciate how Lightning solves Bitcoin's scaling trilemma" +
           "Be able to interpret addresses and identify network paths"
         ),
         React.createElement('p', { className: "text-sm text-blue-300 mt-2", key: "simulation-features" },
@@ -2185,470 +2209,474 @@ export const realm3Missions: MissionContent[] = [
         )
       ])
     ]),
-    completionMessage: "🎉 Simulation Complete: You have Sent BTC Using Both Layers!!.🧱 On-Chain Bitcoin gave you finality and security — perfect for large or critical transactions.⚡ Lightning Network delivered instant, low-cost payments — ideal for daily use and microtransactions.🔄 Together, they are two sides of the same coin: The base layer protects your wealth.The second layer lets you spend it freely.🔐 Layered scaling is how Bitcoin grows to serve billions — without compromising on decentralization or security.🚀 You’re now ready to navigate the future of Bitcoin payments with confidence!"
+    completionMessage: "🎉 Simulation Complete: You have Sent BTC Using Both Layers!!.🧱 On-Chain Bitcoin gave you finality and security — perfect for large or critical transactions.⚡ Lightning Network delivered instant, low-cost payments — ideal for daily use and microtransactions.🔄 Together, they are two sides of the same coin: The base layer protects your wealth.The second layer lets you spend it freely.🔐 Layered scaling is how Bitcoin grows to serve billions — without compromising on decentralization or security.🚀 You’re now ready to navigate the future of Bitcoin payments with confidence!",
+    description: '',
+    objectives: []
   },
     {
-    id: 13,
-    title: "Bitcoin Security Best Practices",
-    subtitle: "Protecting Your Digital Assets",
-    imagePath: "https://pfst.cf2.poecdn.net/base/image/fd4dc92e1adf80eb3121079310d0f385047eb6f0c10bca8e0b3ecb7c4437fe16?w=530&h=260",
-    simulationType: "trustless",
-    content: createContent([
-      React.createElement("img", { 
-        src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-network.png",
-        alt: "Bitcoin Security Shield",
-        className: "w-full h-48 object-cover rounded-lg mb-4"
-      }),
-      React.createElement('p', { className: "mb-4", key: "intro" },
-        "Bitcoin's security model puts you in complete control of your money - but with great power comes great responsibility. " +
-        "Understanding and implementing proper security practices is essential for protecting your digital assets."
-      ),
-
-      React.createElement('div', { className: "bg-red-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "fundamentals" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "fund-title" }, "🔐 Security Fundamentals"),
-        React.createElement('p', { className: "mb-3", key: "fund-intro" },
-          "Bitcoin security relies on cryptographic keys. Your private key IS your Bitcoin - lose it, and you lose your coins."
+      id: 13,
+      title: "Bitcoin Security Best Practices",
+      subtitle: "Protecting Your Digital Assets",
+      imagePath: "https://pfst.cf2.poecdn.net/base/image/fd4dc92e1adf80eb3121079310d0f385047eb6f0c10bca8e0b3ecb7c4437fe16?w=530&h=260",
+      simulationType: "trustless",
+      content: createContent([
+        React.createElement("img", {
+          src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Lightning-network.png",
+          alt: "Bitcoin Security Shield",
+          className: "w-full h-48 object-cover rounded-lg mb-4"
+        }),
+        React.createElement('p', { className: "mb-4", key: "intro" },
+          "Bitcoin's security model puts you in complete control of your money - but with great power comes great responsibility. " +
+          "Understanding and implementing proper security practices is essential for protecting your digital assets."
         ),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "fund-details" }, [
-          React.createElement('div', { key: "private-keys" }, [
-            React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "pk-title" }, "Private Keys:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "pk-list" }, [
-              React.createElement('li', { key: "pk1" }, "🔑 256-bit random number"),
-              React.createElement('li', { key: "pk2" }, "🔒 Controls access to your Bitcoin"),
-              React.createElement('li', { key: "pk3" }, "📱 Never share with anyone"),
-              React.createElement('li', { key: "pk4" }, "💾 Back up securely offline")
+
+        React.createElement('div', { className: "bg-red-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "fundamentals" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "fund-title" }, "🔐 Security Fundamentals"),
+          React.createElement('p', { className: "mb-3", key: "fund-intro" },
+            "Bitcoin security relies on cryptographic keys. Your private key IS your Bitcoin - lose it, and you lose your coins."
+          ),
+          React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "fund-details" }, [
+            React.createElement('div', { key: "private-keys" }, [
+              React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "pk-title" }, "Private Keys:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "pk-list" }, [
+                React.createElement('li', { key: "pk1" }, "🔑 256-bit random number"),
+                React.createElement('li', { key: "pk2" }, "🔒 Controls access to your Bitcoin"),
+                React.createElement('li', { key: "pk3" }, "📱 Never share with anyone"),
+                React.createElement('li', { key: "pk4" }, "💾 Back up securely offline")
+              ])
+            ]),
+            React.createElement('div', { key: "seed-phrases" }, [
+              React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "seed-title" }, "Seed Phrases (Mnemonic):"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-list" }, [
+                React.createElement('li', { key: "seed1" }, "📝 12-24 word backup"),
+                React.createElement('li', { key: "seed2" }, "🔄 Recovers all your keys"),
+                React.createElement('li', { key: "seed3" }, "📄 Write on paper, not digital"),
+                React.createElement('li', { key: "seed4" }, "🏠 Store in multiple secure locations")
+              ])
             ])
           ]),
-          React.createElement('div', { key: "seed-phrases" }, [
-            React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "seed-title" }, "Seed Phrases (Mnemonic):"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-list" }, [
-              React.createElement('li', { key: "seed1" }, "📝 12-24 word backup"),
-              React.createElement('li', { key: "seed2" }, "🔄 Recovers all your keys"),
-              React.createElement('li', { key: "seed3" }, "📄 Write on paper, not digital"),
-              React.createElement('li', { key: "seed4" }, "🏠 Store in multiple secure locations")
+          React.createElement('div', { className: "mt-3 p-3 bg-red-800/20 rounded", key: "golden-rule" }, [
+            React.createElement('h4', { className: "font-semibold text-red-200 mb-1", key: "rule-title" }, "Golden Rule:"),
+            React.createElement('p', { className: "text-sm font-semibold", key: "rule-text" },
+              "\"Not your keys, not your coins\" - Always control your private keys"
+            )
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "wallet-types" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-300", key: "wallet-title" }, "🏦 Wallet Security Hierarchy"),
+          React.createElement('p', { className: "mb-3", key: "wallet-intro" },
+            "Different wallet types offer varying levels of security. Choose based on your needs and amount stored."
+          ),
+          React.createElement('div', { className: "space-y-3", key: "wallet-types-list" }, [
+            React.createElement('div', { className: "p-3 bg-green-800/20 rounded border border-green-700", key: "hardware-wallets" }, [
+              React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "hw-title" }, "🔒 Hardware Wallets (Most Secure)"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "hw-details" }, [
+                React.createElement('div', { key: "hw-pros" }, [
+                  React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "hw-pros-title" }, "✅ Advantages:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "hw-pros-list" }, [
+                    React.createElement('li', { key: "hw-pro1" }, "Keys never touch internet"),
+                    React.createElement('li', { key: "hw-pro2" }, "Malware resistant"),
+                    React.createElement('li', { key: "hw-pro3" }, "Transaction verification on device"),
+                    React.createElement('li', { key: "hw-pro4" }, "PIN and passphrase protection")
+                  ])
+                ]),
+                React.createElement('div', { key: "hw-examples" }, [
+                  React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "hw-examples-title" }, "Popular Options:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "hw-examples-list" }, [
+                    React.createElement('li', { key: "hw-ex1" }, "Ledger Nano S/X"),
+                    React.createElement('li', { key: "hw-ex2" }, "Trezor One/Model T"),
+                    React.createElement('li', { key: "hw-ex3" }, "Coldcard (Bitcoin-only)"),
+                    React.createElement('li', { key: "hw-ex4" }, "BitBox02")
+                  ])
+                ])
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded border border-yellow-700", key: "desktop-wallets" }, [
+              React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "desk-title" }, "💻 Desktop Wallets (Medium Security)"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "desk-details" }, [
+                React.createElement('div', { key: "desk-pros" }, [
+                  React.createElement('h5', { className: "font-semibold text-yellow-300 mb-1", key: "desk-pros-title" }, "✅ Advantages:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "desk-pros-list" }, [
+                    React.createElement('li', { key: "desk-pro1" }, "Full control of keys"),
+                    React.createElement('li', { key: "desk-pro2" }, "Good for daily use"),
+                    React.createElement('li', { key: "desk-pro3" }, "Advanced features"),
+                    React.createElement('li', { key: "desk-pro4" }, "Can run full node")
+                  ])
+                ]),
+                React.createElement('div', { key: "desk-risks" }, [
+                  React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "desk-risks-title" }, "⚠️ Risks:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "desk-risks-list" }, [
+                    React.createElement('li', { key: "desk-risk1" }, "Vulnerable to malware"),
+                    React.createElement('li', { key: "desk-risk2" }, "Computer compromise"),
+                    React.createElement('li', { key: "desk-risk3" }, "Physical theft"),
+                    React.createElement('li', { key: "desk-risk4" }, "Software bugs")
+                  ])
+                ])
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-orange-800/20 rounded border border-orange-700", key: "mobile-wallets" }, [
+              React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "mobile-title" }, "📱 Mobile Wallets (Convenience vs Security)"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "mobile-details" }, [
+                React.createElement('div', { key: "mobile-pros" }, [
+                  React.createElement('h5', { className: "font-semibold text-orange-300 mb-1", key: "mobile-pros-title" }, "✅ Advantages:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "mobile-pros-list" }, [
+                    React.createElement('li', { key: "mobile-pro1" }, "Always with you"),
+                    React.createElement('li', { key: "mobile-pro2" }, "QR code scanning"),
+                    React.createElement('li', { key: "mobile-pro3" }, "Lightning network support"),
+                    React.createElement('li', { key: "mobile-pro4" }, "Biometric protection")
+                  ])
+                ]),
+                React.createElement('div', { key: "mobile-risks" }, [
+                  React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "mobile-risks-title" }, "⚠️ Risks:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "mobile-risks-list" }, [
+                    React.createElement('li', { key: "mobile-risk1" }, "Phone theft/loss"),
+                    React.createElement('li', { key: "mobile-risk2" }, "App store malware"),
+                    React.createElement('li', { key: "mobile-risk3" }, "OS vulnerabilities"),
+                    React.createElement('li', { key: "mobile-risk4" }, "Network attacks")
+                  ])
+                ])
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-red-800/20 rounded border border-red-700", key: "exchange-wallets" }, [
+              React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "exch-title" }, "🏢 Exchange Wallets (Highest Risk)"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "exch-details" }, [
+                React.createElement('div', { key: "exch-uses" }, [
+                  React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "exch-uses-title" }, "📋 Use Cases:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "exch-uses-list" }, [
+                    React.createElement('li', { key: "exch-use1" }, "Active trading only"),
+                    React.createElement('li', { key: "exch-use2" }, "Buying/selling Bitcoin"),
+                    React.createElement('li', { key: "exch-use3" }, "Small amounts temporarily"),
+                    React.createElement('li', { key: "exch-use4" }, "DCA automation")
+                  ])
+                ]),
+                React.createElement('div', { key: "exch-risks" }, [
+                  React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "exch-risks-title" }, "🚨 Major Risks:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "exch-risks-list" }, [
+                    React.createElement('li', { key: "exch-risk1" }, "Exchange hacks"),
+                    React.createElement('li', { key: "exch-risk2" }, "Company bankruptcy"),
+                    React.createElement('li', { key: "exch-risk3" }, "Government seizure"),
+                    React.createElement('li', { key: "exch-risk4" }, "Account freezing")
+                  ])
+                ])
+              ])
             ])
           ])
         ]),
-        React.createElement('div', { className: "mt-3 p-3 bg-red-800/20 rounded", key: "golden-rule" }, [
-          React.createElement('h4', { className: "font-semibold text-red-200 mb-1", key: "rule-title" }, "Golden Rule:"),
-          React.createElement('p', { className: "text-sm font-semibold", key: "rule-text" },
-            "\"Not your keys, not your coins\" - Always control your private keys"
+
+        React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4 mb-4", key: "backup-strategies" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-green-300", key: "backup-title" }, "💾 Backup Strategies"),
+          React.createElement('p', { className: "mb-3", key: "backup-intro" },
+            "A proper backup strategy protects against loss, theft, and disasters while maintaining security."
+          ),
+          React.createElement('div', { className: "space-y-3", key: "backup-methods" }, [
+            React.createElement('div', { className: "p-3 bg-green-800/20 rounded", key: "seed-backup" }, [
+              React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "seed-backup-title" }, "📝 Seed Phrase Backup:"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "seed-backup-details" }, [
+                React.createElement('div', { key: "seed-do" }, [
+                  React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "seed-do-title" }, "✅ Do:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-do-list" }, [
+                    React.createElement('li', { key: "seed-do1" }, "Write on paper with permanent ink"),
+                    React.createElement('li', { key: "seed-do2" }, "Use metal backup plates"),
+                    React.createElement('li', { key: "seed-do3" }, "Store in multiple locations"),
+                    React.createElement('li', { key: "seed-do4" }, "Test recovery process"),
+                    React.createElement('li', { key: "seed-do5" }, "Keep copies geographically separated")
+                  ])
+                ]),
+                React.createElement('div', { key: "seed-dont" }, [
+                  React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "seed-dont-title" }, "❌ Don't:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-dont-list" }, [
+                    React.createElement('li', { key: "seed-dont1" }, "Store digitally (photos, cloud)"),
+                    React.createElement('li', { key: "seed-dont2" }, "Email to yourself"),
+                    React.createElement('li', { key: "seed-dont3" }, "Store with password managers"),
+                    React.createElement('li', { key: "seed-dont4" }, "Share with anyone"),
+                    React.createElement('li', { key: "seed-dont5" }, "Store all copies together")
+                  ])
+                ])
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-green-800/20 rounded", key: "321-rule" }, [
+              React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "321-title" }, "📊 3-2-1 Backup Rule:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "321-list" }, [
+                React.createElement('li', { key: "321-1" }, "📄 3 copies of your seed phrase"),
+                React.createElement('li', { key: "321-2" }, "💿 2 different media types (paper + metal)"),
+                React.createElement('li', { key: "321-3" }, "🏠 1 copy stored offsite (bank vault, trusted family)")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "attack-vectors" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "attack-title" }, "🎯 Common Attack Vectors"),
+          React.createElement('p', { className: "mb-3", key: "attack-intro" },
+            "Understanding how attackers operate helps you protect yourself against common threats."
+          ),
+          React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "attack-grid" }, [
+            React.createElement('div', { key: "tech-attacks" }, [
+              React.createElement('h4', { className: "font-semibold text-purple-200 mb-2", key: "tech-title" }, "💻 Technical Attacks:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "tech-list" }, [
+                React.createElement('li', { key: "tech1" }, "🦠 Malware/keyloggers"),
+                React.createElement('li', { key: "tech2" }, "🎣 Phishing websites"),
+                React.createElement('li', { key: "tech3" }, "📱 Fake wallet apps"),
+                React.createElement('li', { key: "tech4" }, "🌐 Man-in-the-middle attacks"),
+                React.createElement('li', { key: "tech5" }, "📋 Clipboard hijacking"),
+                React.createElement('li', { key: "tech6" }, "🔍 Address poisoning")
+              ])
+            ]),
+            React.createElement('div', { key: "social-attacks" }, [
+              React.createElement('h4', { className: "font-semibold text-purple-200 mb-2", key: "social-title" }, "👥 Social Engineering:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "social-list" }, [
+                React.createElement('li', { key: "social1" }, "📞 Phone/SIM swapping"),
+                React.createElement('li', { key: "social2" }, "💌 Email impersonation"),
+                React.createElement('li', { key: "social3" }, "🎭 Fake support staff"),
+                React.createElement('li', { key: "social4" }, "🎪 Investment scams"),
+                React.createElement('li', { key: "social5" }, "🔧 Fake repair services"),
+                React.createElement('li', { key: "social6" }, "🎁 Dusting attacks")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4 mb-4", key: "transaction-security" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-yellow-300", key: "tx-title" }, "💸 Transaction Security"),
+          React.createElement('p', { className: "mb-3", key: "tx-intro" },
+            "Every transaction carries risk. Follow these practices to transact safely."
+          ),
+          React.createElement('div', { className: "space-y-3", key: "tx-practices" }, [
+            React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded", key: "verify-addresses" }, [
+              React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "verify-title" }, "🔍 Address Verification:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "verify-list" }, [
+                React.createElement('li', { key: "verify1" }, "📋 Always verify full address (never trust first/last chars)"),
+                React.createElement('li', { key: "verify2" }, "📱 Use QR codes when possible"),
+                React.createElement('li', { key: "verify3" }, "📞 Confirm large amounts via separate channel"),
+                React.createElement('li', { key: "verify4" }, "🧪 Send small test amount first"),
+                React.createElement('li', { key: "verify5" }, "📝 Double-check clipboard contents")
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded", key: "fee-security" }, [
+              React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "fee-title" }, "💰 Fee Security:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "fee-list" }, [
+                React.createElement('li', { key: "fee1" }, "⚡ Check fee rates before sending"),
+                React.createElement('li', { key: "fee2" }, "🕐 Use appropriate fee for urgency"),
+                React.createElement('li', { key: "fee3" }, "🔄 Enable Replace-by-Fee (RBF)"),
+                React.createElement('li', { key: "fee4" }, "📊 Monitor mempool congestion"),
+                React.createElement('li', { key: "fee5" }, "🎯 Avoid overpaying in panic")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-indigo-900/20 border border-indigo-800/30 rounded-lg p-4 mb-4", key: "advanced-security" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-indigo-300", key: "advanced-title" }, "🛡️ Advanced Security Measures"),
+          React.createElement('div', { className: "space-y-3", key: "advanced-measures" }, [
+            React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "multisig" }, [
+              React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "multisig-title" }, "🔐 Multi-Signature Wallets:"),
+              React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "multisig-details" }, [
+                React.createElement('div', { key: "multisig-benefits" }, [
+                  React.createElement('h5', { className: "font-semibold text-indigo-300 mb-1", key: "multisig-benefits-title" }, "Benefits:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "multisig-benefits-list" }, [
+                    React.createElement('li', { key: "multisig-b1" }, "Requires multiple signatures"),
+                    React.createElement('li', { key: "multisig-b2" }, "No single point of failure"),
+                    React.createElement('li', { key: "multisig-b3" }, "Shared custody options"),
+                    React.createElement('li', { key: "multisig-b4" }, "Enhanced security")
+                  ])
+                ]),
+                React.createElement('div', { key: "multisig-schemes" }, [
+                  React.createElement('h5', { className: "font-semibold text-indigo-300 mb-1", key: "multisig-schemes-title" }, "Common Schemes:"),
+                  React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "multisig-schemes-list" }, [
+                    React.createElement('li', { key: "multisig-s1" }, "2-of-3 (2 keys needed of 3)"),
+                    React.createElement('li', { key: "multisig-s2" }, "3-of-5 (3 keys needed of 5)"),
+                    React.createElement('li', { key: "multisig-s3" }, "Corporate governance"),
+                    React.createElement('li', { key: "multisig-s4" }, "Inheritance planning")
+                  ])
+                ])
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "cold-storage" }, [
+              React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "cold-title" }, "🧊 Cold Storage Techniques:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "cold-list" }, [
+                React.createElement('li', { key: "cold1" }, "📴 Air-gapped computers"),
+                React.createElement('li', { key: "cold2" }, "📜 Paper wallets (if done correctly)"),
+                React.createElement('li', { key: "cold3" }, "🔒 Hardware wallets in safes"),
+                React.createElement('li', { key: "cold4" }, "💽 Encrypted offline backups"),
+                React.createElement('li', { key: "cold5" }, "🎲 Dice-generated entropy")
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "passphrases" }, [
+              React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "pass-title" }, "🔤 Passphrase Protection:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "pass-list" }, [
+                React.createElement('li', { key: "pass1" }, "➕ 25th word protection"),
+                React.createElement('li', { key: "pass2" }, "🎭 Hidden wallet functionality"),
+                React.createElement('li', { key: "pass3" }, "🛡️ Protection against physical access"),
+                React.createElement('li', { key: "pass4" }, "🧠 Must be memorable but secure"),
+                React.createElement('li', { key: "pass5" }, "📝 Back up separately from seed")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "operational-security" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-orange-300", key: "opsec-title" }, "🎯 Operational Security (OPSEC)"),
+          React.createElement('p', { className: "mb-3", key: "opsec-intro" },
+            "Your behavior and habits can expose you to risks. Practice good operational security."
+          ),
+          React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "opsec-grid" }, [
+            React.createElement('div', { key: "privacy-practices" }, [
+              React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "privacy-title" }, "🔒 Privacy Practices:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "privacy-list" }, [
+                React.createElement('li', { key: "privacy1" }, "🤐 Don't discuss holdings publicly"),
+                React.createElement('li', { key: "privacy2" }, "📵 Use different addresses"),
+                React.createElement('li', { key: "privacy3" }, "🌐 Use Tor for transactions"),
+                React.createElement('li', { key: "privacy4" }, "🎭 Avoid linking identities"),
+                React.createElement('li', { key: "privacy5" }, "📱 Secure communication channels")
+              ])
+            ]),
+            React.createElement('div', { key: "physical-security" }, [
+              React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "physical-title" }, "🏠 Physical Security:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "physical-list" }, [
+                React.createElement('li', { key: "physical1" }, "🔐 Secure storage locations"),
+                React.createElement('li', { key: "physical2" }, "📹 Home security systems"),
+                React.createElement('li', { key: "physical3" }, "🚪 Limit access to devices"),
+                React.createElement('li', { key: "physical4" }, "🗄️ Bank safety deposit boxes"),
+                React.createElement('li', { key: "physical5" }, "👥 Trusted family/friends awareness")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-gray-900/20 border border-gray-800/30 rounded-lg p-4 mb-4", key: "emergency-planning" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-gray-300", key: "emergency-title" }, "🚨 Emergency Planning"),
+          React.createElement('p', { className: "mb-3", key: "emergency-intro" },
+            "Plan for worst-case scenarios to protect your Bitcoin and help your loved ones."
+          ),
+          React.createElement('div', { className: "space-y-3", key: "emergency-plans" }, [
+            React.createElement('div', { className: "p-3 bg-gray-800/20 rounded", key: "inheritance" }, [
+              React.createElement('h4', { className: "font-semibold text-gray-200 mb-2", key: "inheritance-title" }, "👨‍👩‍👧‍👦 Inheritance Planning:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "inheritance-list" }, [
+                React.createElement('li', { key: "inherit1" }, "📄 Document wallet information"),
+                React.createElement('li', { key: "inherit2" }, "🎓 Educate trusted family members"),
+                React.createElement('li', { key: "inherit3" }, "⏰ Create time-lock mechanisms"),
+                React.createElement('li', { key: "inherit4" }, "🏛️ Consider legal frameworks"),
+                React.createElement('li', { key: "inherit5" }, "🔄 Regular plan updates")
+              ])
+            ]),
+            React.createElement('div', { className: "p-3 bg-gray-800/20 rounded", key: "incident-response" }, [
+              React.createElement('h4', { className: "font-semibold text-gray-200 mb-2", key: "incident-title" }, "🚨 Incident Response:"),
+              React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "incident-list" }, [
+                React.createElement('li', { key: "incident1" }, "💨 Move funds immediately if compromised"),
+                React.createElement('li', { key: "incident2" }, "📱 Have backup wallets ready"),
+                React.createElement('li', { key: "incident3" }, "🔄 Practice recovery procedures"),
+                React.createElement('li', { key: "incident4" }, "📞 Know who to contact for help"),
+                React.createElement('li', { key: "incident5" }, "📝 Document security incidents")
+              ])
+            ])
+          ])
+        ]),
+
+        React.createElement('div', {
+          className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors",
+          key: "security-challenge",
+          onClick: () => { window.location.href = '/realm3/security-audit-simulator'; }
+        }, [
+          React.createElement('h4', { className: "text-lg font-semibold mb-2 text-blue-400", key: "security-challenge-title" }, "🔍 Interactive Security Audit: Test Your Setup"),
+          React.createElement('p', { className: "mb-3", key: "security-challenge-desc" },
+            "Evaluate your current Bitcoin security setup with our comprehensive audit tool:"
+          ),
+          React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm mb-3", key: "audit-features" }, [
+            React.createElement('li', { key: "audit1" }, "🔒 Wallet security assessment"),
+            React.createElement('li', { key: "audit2" }, "💾 Backup strategy evaluation"),
+            React.createElement('li', { key: "audit3" }, "🎯 Threat model analysis"),
+            React.createElement('li', { key: "audit4" }, "📊 Risk scoring system"),
+            React.createElement('li', { key: "audit5" }, "✅ Personalized recommendations")
+          ]),
+          React.createElement('p', { className: "text-sm text-blue-300", key: "audit-cta" },
+            "Get a security score and actionable steps to improve your Bitcoin security posture."
           )
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4", key: "wallet-types" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-300", key: "wallet-title" }, "🏦 Wallet Security Hierarchy"),
-        React.createElement('p', { className: "mb-3", key: "wallet-intro" },
-          "Different wallet types offer varying levels of security. Choose based on your needs and amount stored."
-        ),
-        React.createElement('div', { className: "space-y-3", key: "wallet-types-list" }, [
-          React.createElement('div', { className: "p-3 bg-green-800/20 rounded border border-green-700", key: "hardware-wallets" }, [
-            React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "hw-title" }, "🔒 Hardware Wallets (Most Secure)"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "hw-details" }, [
-              React.createElement('div', { key: "hw-pros" }, [
-                React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "hw-pros-title" }, "✅ Advantages:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "hw-pros-list" }, [
-                  React.createElement('li', { key: "hw-pro1" }, "Keys never touch internet"),
-                  React.createElement('li', { key: "hw-pro2" }, "Malware resistant"),
-                  React.createElement('li', { key: "hw-pro3" }, "Transaction verification on device"),
-                  React.createElement('li', { key: "hw-pro4" }, "PIN and passphrase protection")
-                ])
-              ]),
-              React.createElement('div', { key: "hw-examples" }, [
-                React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "hw-examples-title" }, "Popular Options:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "hw-examples-list" }, [
-                  React.createElement('li', { key: "hw-ex1" }, "Ledger Nano S/X"),
-                  React.createElement('li', { key: "hw-ex2" }, "Trezor One/Model T"),
-                  React.createElement('li', { key: "hw-ex3" }, "Coldcard (Bitcoin-only)"),
-                  React.createElement('li', { key: "hw-ex4" }, "BitBox02")
-                ])
-              ])
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded border border-yellow-700", key: "desktop-wallets" }, [
-            React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "desk-title" }, "💻 Desktop Wallets (Medium Security)"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "desk-details" }, [
-              React.createElement('div', { key: "desk-pros" }, [
-                React.createElement('h5', { className: "font-semibold text-yellow-300 mb-1", key: "desk-pros-title" }, "✅ Advantages:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "desk-pros-list" }, [
-                  React.createElement('li', { key: "desk-pro1" }, "Full control of keys"),
-                  React.createElement('li', { key: "desk-pro2" }, "Good for daily use"),
-                  React.createElement('li', { key: "desk-pro3" }, "Advanced features"),
-                  React.createElement('li', { key: "desk-pro4" }, "Can run full node")
-                ])
-              ]),
-              React.createElement('div', { key: "desk-risks" }, [
-                React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "desk-risks-title" }, "⚠️ Risks:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "desk-risks-list" }, [
-                  React.createElement('li', { key: "desk-risk1" }, "Vulnerable to malware"),
-                  React.createElement('li', { key: "desk-risk2" }, "Computer compromise"),
-                  React.createElement('li', { key: "desk-risk3" }, "Physical theft"),
-                  React.createElement('li', { key: "desk-risk4" }, "Software bugs")
-                ])
-              ])
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-orange-800/20 rounded border border-orange-700", key: "mobile-wallets" }, [
-            React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "mobile-title" }, "📱 Mobile Wallets (Convenience vs Security)"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "mobile-details" }, [
-              React.createElement('div', { key: "mobile-pros" }, [
-                React.createElement('h5', { className: "font-semibold text-orange-300 mb-1", key: "mobile-pros-title" }, "✅ Advantages:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "mobile-pros-list" }, [
-                  React.createElement('li', { key: "mobile-pro1" }, "Always with you"),
-                  React.createElement('li', { key: "mobile-pro2" }, "QR code scanning"),
-                  React.createElement('li', { key: "mobile-pro3" }, "Lightning network support"),
-                  React.createElement('li', { key: "mobile-pro4" }, "Biometric protection")
-                ])
-              ]),
-              React.createElement('div', { key: "mobile-risks" }, [
-                React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "mobile-risks-title" }, "⚠️ Risks:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "mobile-risks-list" }, [
-                  React.createElement('li', { key: "mobile-risk1" }, "Phone theft/loss"),
-                  React.createElement('li', { key: "mobile-risk2" }, "App store malware"),
-                  React.createElement('li', { key: "mobile-risk3" }, "OS vulnerabilities"),
-                  React.createElement('li', { key: "mobile-risk4" }, "Network attacks")
-                ])
-              ])
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-red-800/20 rounded border border-red-700", key: "exchange-wallets" }, [
-            React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "exch-title" }, "🏢 Exchange Wallets (Highest Risk)"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "exch-details" }, [
-              React.createElement('div', { key: "exch-uses" }, [
-                React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "exch-uses-title" }, "📋 Use Cases:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "exch-uses-list" }, [
-                  React.createElement('li', { key: "exch-use1" }, "Active trading only"),
-                  React.createElement('li', { key: "exch-use2" }, "Buying/selling Bitcoin"),
-                  React.createElement('li', { key: "exch-use3" }, "Small amounts temporarily"),
-                  React.createElement('li', { key: "exch-use4" }, "DCA automation")
-                ])
-              ]),
-              React.createElement('div', { key: "exch-risks" }, [
-                React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "exch-risks-title" }, "🚨 Major Risks:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "exch-risks-list" }, [
-                  React.createElement('li', { key: "exch-risk1" }, "Exchange hacks"),
-                  React.createElement('li', { key: "exch-risk2" }, "Company bankruptcy"),
-                  React.createElement('li', { key: "exch-risk3" }, "Government seizure"),
-                  React.createElement('li', { key: "exch-risk4" }, "Account freezing")
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-green-900/20 border border-green-800/30 rounded-lg p-4 mb-4", key: "backup-strategies" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-green-300", key: "backup-title" }, "💾 Backup Strategies"),
-        React.createElement('p', { className: "mb-3", key: "backup-intro" },
-          "A proper backup strategy protects against loss, theft, and disasters while maintaining security."
-        ),
-        React.createElement('div', { className: "space-y-3", key: "backup-methods" }, [
-          React.createElement('div', { className: "p-3 bg-green-800/20 rounded", key: "seed-backup" }, [
-            React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "seed-backup-title" }, "📝 Seed Phrase Backup:"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "seed-backup-details" }, [
-              React.createElement('div', { key: "seed-do" }, [
-                React.createElement('h5', { className: "font-semibold text-green-300 mb-1", key: "seed-do-title" }, "✅ Do:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-do-list" }, [
-                  React.createElement('li', { key: "seed-do1" }, "Write on paper with permanent ink"),
-                  React.createElement('li', { key: "seed-do2" }, "Use metal backup plates"),
-                  React.createElement('li', { key: "seed-do3" }, "Store in multiple locations"),
-                  React.createElement('li', { key: "seed-do4" }, "Test recovery process"),
-                  React.createElement('li', { key: "seed-do5" }, "Keep copies geographically separated")
-                ])
-              ]),
-              React.createElement('div', { key: "seed-dont" }, [
-                React.createElement('h5', { className: "font-semibold text-red-300 mb-1", key: "seed-dont-title" }, "❌ Don't:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "seed-dont-list" }, [
-                  React.createElement('li', { key: "seed-dont1" }, "Store digitally (photos, cloud)"),
-                  React.createElement('li', { key: "seed-dont2" }, "Email to yourself"),
-                  React.createElement('li', { key: "seed-dont3" }, "Store with password managers"),
-                  React.createElement('li', { key: "seed-dont4" }, "Share with anyone"),
-                  React.createElement('li', { key: "seed-dont5" }, "Store all copies together")
-                ])
-              ])
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-green-800/20 rounded", key: "321-rule" }, [
-            React.createElement('h4', { className: "font-semibold text-green-200 mb-2", key: "321-title" }, "📊 3-2-1 Backup Rule:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "321-list" }, [
-              React.createElement('li', { key: "321-1" }, "📄 3 copies of your seed phrase"),
-              React.createElement('li', { key: "321-2" }, "💿 2 different media types (paper + metal)"),
-              React.createElement('li', { key: "321-3" }, "🏠 1 copy stored offsite (bank vault, trusted family)")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-purple-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "attack-vectors" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "attack-title" }, "🎯 Common Attack Vectors"),
-        React.createElement('p', { className: "mb-3", key: "attack-intro" },
-          "Understanding how attackers operate helps you protect yourself against common threats."
-        ),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "attack-grid" }, [
-          React.createElement('div', { key: "tech-attacks" }, [
-            React.createElement('h4', { className: "font-semibold text-purple-200 mb-2", key: "tech-title" }, "💻 Technical Attacks:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "tech-list" }, [
-              React.createElement('li', { key: "tech1" }, "🦠 Malware/keyloggers"),
-              React.createElement('li', { key: "tech2" }, "🎣 Phishing websites"),
-              React.createElement('li', { key: "tech3" }, "📱 Fake wallet apps"),
-              React.createElement('li', { key: "tech4" }, "🌐 Man-in-the-middle attacks"),
-              React.createElement('li', { key: "tech5" }, "📋 Clipboard hijacking"),
-              React.createElement('li', { key: "tech6" }, "🔍 Address poisoning")
-            ])
-          ]),
-          React.createElement('div', { key: "social-attacks" }, [
-            React.createElement('h4', { className: "font-semibold text-purple-200 mb-2", key: "social-title" }, "👥 Social Engineering:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "social-list" }, [
-              React.createElement('li', { key: "social1" }, "📞 Phone/SIM swapping"),
-              React.createElement('li', { key: "social2" }, "💌 Email impersonation"),
-              React.createElement('li', { key: "social3" }, "🎭 Fake support staff"),
-              React.createElement('li', { key: "social4" }, "🎪 Investment scams"),
-              React.createElement('li', { key: "social5" }, "🔧 Fake repair services"),
-              React.createElement('li', { key: "social6" }, "🎁 Dusting attacks")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-yellow-900/20 border border-yellow-800/30 rounded-lg p-4 mb-4", key: "transaction-security" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-yellow-300", key: "tx-title" }, "💸 Transaction Security"),
-        React.createElement('p', { className: "mb-3", key: "tx-intro" },
-          "Every transaction carries risk. Follow these practices to transact safely."
-        ),
-        React.createElement('div', { className: "space-y-3", key: "tx-practices" }, [
-          React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded", key: "verify-addresses" }, [
-            React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "verify-title" }, "🔍 Address Verification:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "verify-list" }, [
-              React.createElement('li', { key: "verify1" }, "📋 Always verify full address (never trust first/last chars)"),
-              React.createElement('li', { key: "verify2" }, "📱 Use QR codes when possible"),
-              React.createElement('li', { key: "verify3" }, "📞 Confirm large amounts via separate channel"),
-              React.createElement('li', { key: "verify4" }, "🧪 Send small test amount first"),
-              React.createElement('li', { key: "verify5" }, "📝 Double-check clipboard contents")
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-yellow-800/20 rounded", key: "fee-security" }, [
-            React.createElement('h4', { className: "font-semibold text-yellow-200 mb-2", key: "fee-title" }, "💰 Fee Security:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "fee-list" }, [
-              React.createElement('li', { key: "fee1" }, "⚡ Check fee rates before sending"),
-              React.createElement('li', { key: "fee2" }, "🕐 Use appropriate fee for urgency"),
-              React.createElement('li', { key: "fee3" }, "🔄 Enable Replace-by-Fee (RBF)"),
-              React.createElement('li', { key: "fee4" }, "📊 Monitor mempool congestion"),
-              React.createElement('li', { key: "fee5" }, "🎯 Avoid overpaying in panic")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-indigo-900/20 border border-indigo-800/30 rounded-lg p-4 mb-4", key: "advanced-security" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-indigo-300", key: "advanced-title" }, "🛡️ Advanced Security Measures"),
-        React.createElement('div', { className: "space-y-3", key: "advanced-measures" }, [
-          React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "multisig" }, [
-            React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "multisig-title" }, "🔐 Multi-Signature Wallets:"),
-            React.createElement('div', { className: "grid md:grid-cols-2 gap-3", key: "multisig-details" }, [
-              React.createElement('div', { key: "multisig-benefits" }, [
-                React.createElement('h5', { className: "font-semibold text-indigo-300 mb-1", key: "multisig-benefits-title" }, "Benefits:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "multisig-benefits-list" }, [
-                  React.createElement('li', { key: "multisig-b1" }, "Requires multiple signatures"),
-                  React.createElement('li', { key: "multisig-b2" }, "No single point of failure"),
-                  React.createElement('li', { key: "multisig-b3" }, "Shared custody options"),
-                  React.createElement('li', { key: "multisig-b4" }, "Enhanced security")
-                ])
-              ]),
-              React.createElement('div', { key: "multisig-schemes" }, [
-                React.createElement('h5', { className: "font-semibold text-indigo-300 mb-1", key: "multisig-schemes-title" }, "Common Schemes:"),
-                React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "multisig-schemes-list" }, [
-                  React.createElement('li', { key: "multisig-s1" }, "2-of-3 (2 keys needed of 3)"),
-                  React.createElement('li', { key: "multisig-s2" }, "3-of-5 (3 keys needed of 5)"),
-                  React.createElement('li', { key: "multisig-s3" }, "Corporate governance"),
-                  React.createElement('li', { key: "multisig-s4" }, "Inheritance planning")
-                ])
-              ])
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "cold-storage" }, [
-            React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "cold-title" }, "🧊 Cold Storage Techniques:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "cold-list" }, [
-              React.createElement('li', { key: "cold1" }, "📴 Air-gapped computers"),
-              React.createElement('li', { key: "cold2" }, "📜 Paper wallets (if done correctly)"),
-              React.createElement('li', { key: "cold3" }, "🔒 Hardware wallets in safes"),
-              React.createElement('li', { key: "cold4" }, "💽 Encrypted offline backups"),
-              React.createElement('li', { key: "cold5" }, "🎲 Dice-generated entropy")
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-indigo-800/20 rounded", key: "passphrases" }, [
-            React.createElement('h4', { className: "font-semibold text-indigo-200 mb-2", key: "pass-title" }, "🔤 Passphrase Protection:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "pass-list" }, [
-              React.createElement('li', { key: "pass1" }, "➕ 25th word protection"),
-              React.createElement('li', { key: "pass2" }, "🎭 Hidden wallet functionality"),
-              React.createElement('li', { key: "pass3" }, "🛡️ Protection against physical access"),
-              React.createElement('li', { key: "pass4" }, "🧠 Must be memorable but secure"),
-              React.createElement('li', { key: "pass5" }, "📝 Back up separately from seed")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-orange-900/20 border border-orange-800/30 rounded-lg p-4 mb-4", key: "operational-security" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-orange-300", key: "opsec-title" }, "🎯 Operational Security (OPSEC)"),
-        React.createElement('p', { className: "mb-3", key: "opsec-intro" },
-          "Your behavior and habits can expose you to risks. Practice good operational security."
-        ),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "opsec-grid" }, [
-          React.createElement('div', { key: "privacy-practices" }, [
-            React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "privacy-title" }, "🔒 Privacy Practices:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "privacy-list" }, [
-              React.createElement('li', { key: "privacy1" }, "🤐 Don't discuss holdings publicly"),
-              React.createElement('li', { key: "privacy2" }, "📵 Use different addresses"),
-              React.createElement('li', { key: "privacy3" }, "🌐 Use Tor for transactions"),
-              React.createElement('li', { key: "privacy4" }, "🎭 Avoid linking identities"),
-              React.createElement('li', { key: "privacy5" }, "📱 Secure communication channels")
-            ])
-          ]),
-          React.createElement('div', { key: "physical-security" }, [
-            React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "physical-title" }, "🏠 Physical Security:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "physical-list" }, [
-              React.createElement('li', { key: "physical1" }, "🔐 Secure storage locations"),
-              React.createElement('li', { key: "physical2" }, "📹 Home security systems"),
-              React.createElement('li', { key: "physical3" }, "🚪 Limit access to devices"),
-              React.createElement('li', { key: "physical4" }, "🗄️ Bank safety deposit boxes"),
-              React.createElement('li', { key: "physical5" }, "👥 Trusted family/friends awareness")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { className: "bg-gray-900/20 border border-gray-800/30 rounded-lg p-4 mb-4", key: "emergency-planning" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-gray-300", key: "emergency-title" }, "🚨 Emergency Planning"),
-        React.createElement('p', { className: "mb-3", key: "emergency-intro" },
-          "Plan for worst-case scenarios to protect your Bitcoin and help your loved ones."
-        ),
-        React.createElement('div', { className: "space-y-3", key: "emergency-plans" }, [
-          React.createElement('div', { className: "p-3 bg-gray-800/20 rounded", key: "inheritance" }, [
-            React.createElement('h4', { className: "font-semibold text-gray-200 mb-2", key: "inheritance-title" }, "👨‍👩‍👧‍👦 Inheritance Planning:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "inheritance-list" }, [
-              React.createElement('li', { key: "inherit1" }, "📄 Document wallet information"),
-              React.createElement('li', { key: "inherit2" }, "🎓 Educate trusted family members"),
-              React.createElement('li', { key: "inherit3" }, "⏰ Create time-lock mechanisms"),
-              React.createElement('li', { key: "inherit4" }, "🏛️ Consider legal frameworks"),
-              React.createElement('li', { key: "inherit5" }, "🔄 Regular plan updates")
-            ])
-          ]),
-          React.createElement('div', { className: "p-3 bg-gray-800/20 rounded", key: "incident-response" }, [
-            React.createElement('h4', { className: "font-semibold text-gray-200 mb-2", key: "incident-title" }, "🚨 Incident Response:"),
-            React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm", key: "incident-list" }, [
-              React.createElement('li', { key: "incident1" }, "💨 Move funds immediately if compromised"),
-              React.createElement('li', { key: "incident2" }, "📱 Have backup wallets ready"),
-              React.createElement('li', { key: "incident3" }, "🔄 Practice recovery procedures"),
-              React.createElement('li', { key: "incident4" }, "📞 Know who to contact for help"),
-              React.createElement('li', { key: "incident5" }, "📝 Document security incidents")
-            ])
-          ])
-        ])
-      ]),
-
-      React.createElement('div', { 
-        className: "bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 mb-4 cursor-pointer hover:bg-blue-900/30 transition-colors", 
-        key: "security-challenge",
-        onClick: () => { window.location.href = '/realm3/security-audit-simulator'; }
-      }, [
-        React.createElement('h4', { className: "text-lg font-semibold mb-2 text-blue-400", key: "security-challenge-title" }, "🔍 Interactive Security Audit: Test Your Setup"),
-        React.createElement('p', { className: "mb-3", key: "security-challenge-desc" },
-          "Evaluate your current Bitcoin security setup with our comprehensive audit tool:"
-        ),
-        React.createElement('ul', { className: "list-disc ml-4 space-y-1 text-sm mb-3", key: "audit-features" }, [
-          React.createElement('li', { key: "audit1" }, "🔒 Wallet security assessment"),
-          React.createElement('li', { key: "audit2" }, "💾 Backup strategy evaluation"),
-          React.createElement('li', { key: "audit3" }, "🎯 Threat model analysis"),
-          React.createElement('li', { key: "audit4" }, "📊 Risk scoring system"),
-          React.createElement('li', { key: "audit5" }, "✅ Personalized recommendations")
         ]),
-        React.createElement('p', { className: "text-sm text-blue-300", key: "audit-cta" },
-          "Get a security score and actionable steps to improve your Bitcoin security posture."
-        )
-      ]),
 
-      React.createElement('div', { className: "bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "security-checklist" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "checklist-title" }, "✅ Security Checklist"),
-        React.createElement('p', { className: "mb-3", key: "checklist-intro" },
-          "Follow this checklist to ensure your Bitcoin security is comprehensive:"
-        ),
-        React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "checklist-grid" }, [
-          React.createElement('div', { key: "basic-security" }, [
-            React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "basic-title" }, "🔰 Basic Security:"),
-            React.createElement('ul', { className: "space-y-1 text-sm", key: "basic-list" }, [
-              React.createElement('li', { className: "flex items-center", key: "basic1" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check1" }),
-                React.createElement('span', { key: "text1" }, "Control your private keys")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "basic2" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check2" }),
-                React.createElement('span', { key: "text2" }, "Backup seed phrase offline")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "basic3" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check3" }),
-                React.createElement('span', { key: "text3" }, "Use strong passwords/PINs")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "basic4" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check4" }),
-                React.createElement('span', { key: "text4" }, "Keep software updated")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "basic5" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check5" }),
-                React.createElement('span', { key: "text5" }, "Verify all addresses")
+        React.createElement('div', { className: "bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-800/30 rounded-lg p-4 mb-4", key: "security-checklist" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-red-300", key: "checklist-title" }, "✅ Security Checklist"),
+          React.createElement('p', { className: "mb-3", key: "checklist-intro" },
+            "Follow this checklist to ensure your Bitcoin security is comprehensive:"
+          ),
+          React.createElement('div', { className: "grid md:grid-cols-2 gap-4", key: "checklist-grid" }, [
+            React.createElement('div', { key: "basic-security" }, [
+              React.createElement('h4', { className: "font-semibold text-red-200 mb-2", key: "basic-title" }, "🔰 Basic Security:"),
+              React.createElement('ul', { className: "space-y-1 text-sm", key: "basic-list" }, [
+                React.createElement('li', { className: "flex items-center", key: "basic1" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check1" }),
+                  React.createElement('span', { key: "text1" }, "Control your private keys")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "basic2" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check2" }),
+                  React.createElement('span', { key: "text2" }, "Backup seed phrase offline")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "basic3" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check3" }),
+                  React.createElement('span', { key: "text3" }, "Use strong passwords/PINs")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "basic4" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check4" }),
+                  React.createElement('span', { key: "text4" }, "Keep software updated")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "basic5" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-red-400 rounded", key: "check5" }),
+                  React.createElement('span', { key: "text5" }, "Verify all addresses")
+                ])
+              ])
+            ]),
+            React.createElement('div', { key: "advanced-security-check" }, [
+              React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "advanced-check-title" }, "🛡️ Advanced Security:"),
+              React.createElement('ul', { className: "space-y-1 text-sm", key: "advanced-check-list" }, [
+                React.createElement('li', { className: "flex items-center", key: "advanced1" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck1" }),
+                  React.createElement('span', { key: "atext1" }, "Use hardware wallet")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "advanced2" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck2" }),
+                  React.createElement('span', { key: "atext2" }, "Multiple backup locations")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "advanced3" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck3" }),
+                  React.createElement('span', { key: "atext3" }, "Consider multisig setup")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "advanced4" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck4" }),
+                  React.createElement('span', { key: "atext4" }, "Practice OPSEC")
+                ]),
+                React.createElement('li', { className: "flex items-center", key: "advanced5" }, [
+                  React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck5" }),
+                  React.createElement('span', { key: "atext5" }, "Plan for inheritance")
+                ])
               ])
             ])
-          ]),
-          React.createElement('div', { key: "advanced-security-check" }, [
-            React.createElement('h4', { className: "font-semibold text-orange-200 mb-2", key: "advanced-check-title" }, "🛡️ Advanced Security:"),
-            React.createElement('ul', { className: "space-y-1 text-sm", key: "advanced-check-list" }, [
-              React.createElement('li', { className: "flex items-center", key: "advanced1" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck1" }),
-                React.createElement('span', { key: "atext1" }, "Use hardware wallet")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "advanced2" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck2" }),
-                React.createElement('span', { key: "atext2" }, "Multiple backup locations")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "advanced3" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck3" }),
-                React.createElement('span', { key: "atext3" }, "Consider multisig setup")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "advanced4" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck4" }),
-                React.createElement('span', { key: "atext4" }, "Practice OPSEC")
-              ]),
-              React.createElement('li', { className: "flex items-center", key: "advanced5" }, [
-                React.createElement('span', { className: "inline-block mr-2 h-3 w-3 border border-orange-400 rounded", key: "acheck5" }),
-                React.createElement('span', { key: "atext5" }, "Plan for inheritance")
-              ])
+          ])
+        ]),
+
+        React.createElement('div', { className: "bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "takeaways" }, [
+          React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "takeaways-title" }, "🧠 Key Security Takeaways"),
+          React.createElement('ul', { className: "space-y-2 text-sm", key: "takeaways-list" }, [
+            React.createElement('li', { className: "flex items-start", key: "takeaway1" }, [
+              React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot1" }),
+              React.createElement('span', { key: "text1" }, "Security is a process, not a product - it requires ongoing attention and updates")
+            ]),
+            React.createElement('li', { className: "flex items-start", key: "takeaway2" }, [
+              React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot2" }),
+              React.createElement('span', { key: "text2" }, "The level of security should match the value at risk and your technical expertise")
+            ]),
+            React.createElement('li', { className: "flex items-start", key: "takeaway3" }, [
+              React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot3" }),
+              React.createElement('span', { key: "text3" }, "Redundancy and backups are your best defense against loss and theft")
+            ]),
+            React.createElement('li', { className: "flex items-start", key: "takeaway4" }, [
+              React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot4" }),
+              React.createElement('span', { key: "text4" }, "Most attacks target human behavior - stay vigilant against social engineering")
             ])
           ])
         ])
       ]),
-
-      React.createElement('div', { className: "bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-800/30 rounded-lg p-4 mb-4", key: "takeaways" }, [
-        React.createElement('h3', { className: "text-xl font-semibold mb-2 text-purple-300", key: "takeaways-title" }, "🧠 Key Security Takeaways"),
-        React.createElement('ul', { className: "space-y-2 text-sm", key: "takeaways-list" }, [
-          React.createElement('li', { className: "flex items-start", key: "takeaway1" }, [
-            React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot1" }),
-            React.createElement('span', { key: "text1" }, "Security is a process, not a product - it requires ongoing attention and updates")
-          ]),
-          React.createElement('li', { className: "flex items-start", key: "takeaway2" }, [
-            React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot2" }),
-            React.createElement('span', { key: "text2" }, "The level of security should match the value at risk and your technical expertise")
-          ]),
-          React.createElement('li', { className: "flex items-start", key: "takeaway3" }, [
-            React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot3" }),
-            React.createElement('span', { key: "text3" }, "Redundancy and backups are your best defense against loss and theft")
-          ]),
-          React.createElement('li', { className: "flex items-start", key: "takeaway4" }, [
-            React.createElement('span', { className: "inline-block mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-purple-400", key: "dot4" }),
-            React.createElement('span', { key: "text4" }, "Most attacks target human behavior - stay vigilant against social engineering")
-          ])
-        ])
-      ])
-    ]),
-    completionMessage: "🎉 Security Mastery Complete! 🛡️ You now understand the fundamentals of Bitcoin security and how to protect your digital assets. 🔐 From private key management to hardware wallets, backup strategies to multi-signature setups - you have the knowledge to build a robust security framework. 🎯 Remember: Security is an ongoing practice, not a one-time setup. Stay informed, stay vigilant, and keep your Bitcoin safe! 🚀 Ready to implement these security practices and take full control of your financial sovereignty!"
-  }  
+      completionMessage: "🎉 Security Mastery Complete! 🛡️ You now understand the fundamentals of Bitcoin security and how to protect your digital assets. 🔐 From private key management to hardware wallets, backup strategies to multi-signature setups - you have the knowledge to build a robust security framework. 🎯 Remember: Security is an ongoing practice, not a one-time setup. Stay informed, stay vigilant, and keep your Bitcoin safe! 🚀 Ready to implement these security practices and take full control of your financial sovereignty!",
+      description: '',
+      objectives: []
+    }  
 ];

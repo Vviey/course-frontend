@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button';
 import { realm3Missions } from '@/lib/realm3-missions';
 import { MissionContent as Realm3MissionContent } from '@/lib/realm3-missions';
 import { getRealmName } from '@/lib/realm-utils';
-import { bioluminescentTheme, miningTheme } from '@/lib/realm-themes';
-
+import { miningTheme } from '@/lib/realm-themes';
 
 export default function MissionPage() {
   const [_, params] = useRoute('/realm3/mission/:id');
@@ -90,7 +89,7 @@ export default function MissionPage() {
               </Button>
             </Link>
           ) : (
-            <Link href="/realm5">
+            <Link href="/realm4">
               <Button className="bg-purple-600 hover:bg-purple-700 text-white mr-4">
                 Continue to Next Realm
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -112,8 +111,8 @@ export default function MissionPage() {
     <div 
       className="min-h-screen text-white"
       style={{
-        background: `linear-gradient(to bottom, ${bioluminescentTheme.colors.background}, ${bioluminescentTheme.colors.backgroundLight})`,
-        backgroundImage: "url('https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Merkles-Canopy.png')",
+        background: `linear-gradient(to bottom, ${miningTheme.colors.background}, ${miningTheme.colors.backgroundLight})`,
+        backgroundImage: "url('/realms/mining.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

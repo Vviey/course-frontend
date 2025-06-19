@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider, useAuth } from "@/context/AuthContext"; 
 import TrustlessSimulator from "@/pages/realm3/trustless-simulator";
+import Realm3MissionWrapper from './pages/realm3/mission-wrapper';
 
 // Lazy load pages
 const HomePage = lazy(() => import("@/pages/HomePage"));
@@ -235,7 +236,7 @@ function App() {
           <Route path="/realm/:realmId/missions/:missionId" component={MissionWrapper} />
           
           {/*Special case for Realm 3 with numbered format*/}
-          <Route path="/realm/3/mission/:missionId" component={lazy(() => import("@/pages/realm3/mission-wrapper"))} /> 
+          {/* <Route path="/realm/3/mission/:missionId" component={lazy(() => import("@/pages/realm3/mission-wrapper"))} />  */}
           
           {/* Special case for Realm 7 with numbered format */}
           <Route path="/realm/7/mission/:missionId" component={lazy(() => import("@/pages/realm7/mission-wrapper"))} />
@@ -243,9 +244,10 @@ function App() {
           {/* Alternative mission route patterns for backwards compatibility */}
           <Route path="/realm1/mission/:missionId" component={MissionWrapper} />
           <Route path="/realm2/mission/:missionId" component={MissionWrapper} />          
-          {/* <Route path="/realm3/:missionId" component={MissionWrapper} />  */}
-          {/* Use custom wrapper for Realm 3 to fix loading issues*/}
           <Route path="/realm3/mission/:missionId" component={lazy(() => import("@/pages/realm3/mission-wrapper"))} />
+
+          {/* <Route path="/realm3/:missionId" component={MissionWrapper} />   */}
+          {/* Use custom wrapper for Realm 3 to fix loading issues*/}
           {/* Use custom wrapper for Realm 4 because it has conflicting mission file structure */}
           <Route path="/realm4/mission/:missionId" component={lazy(() => import("@/pages/realm4/mission-wrapper"))} />
           <Route path="/realm5/mission/:missionId" component={MissionWrapper} />
