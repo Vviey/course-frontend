@@ -12,6 +12,7 @@ const PrivacyBalanceSimulator = lazy(() => import('./privacy-balance-simulator')
 const CBDCSimulator = lazy(() => import('./cbdc-simulator'));
 const LightningNetworkSimulator = lazy(() => import('./lightning-network-simulator'));
 const SelfCustodySimulator = lazy(() => import('./self-custody-simulator'));
+const BitcoinTransparencyExplorer = lazy(() => import("./bitcoin-transparency-explorer"));
 
 export default function Realm2Missions() {
   const [, setLocation] = useLocation();
@@ -46,7 +47,7 @@ export default function Realm2Missions() {
       <div className="max-w-6xl mx-auto">
         {/* Navigation Header */}
         <div className="flex justify-between items-center mb-8">
-          <Link href="/realm3">
+          <Link href="/realm2">
             <a className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors">
               <ChevronLeft className="mr-2 h-5 w-5" />
               <span>Central Citadel</span>
@@ -117,7 +118,7 @@ export default function Realm2Missions() {
   );
 }
 
-const renderSimulation = (simulationType: 'surveillance' | 'privacy' | 'cbdc' | 'bitcoin' | 'lightning' | 'selfcustody') => {
+const renderSimulation = (simulationType: 'surveillance' | 'privacy' | 'cbdc' | 'BitcoinFreedomExplorer' |'bitcoin'| 'lightning' | 'selfcustody') => {
   const components: { [key in typeof simulationType]: JSX.Element } = {
     surveillance: <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-purple-500" />}><SurveillanceSimulator onComplete={function (): void {
       throw new Error('Function not implemented.');
@@ -134,7 +135,10 @@ const renderSimulation = (simulationType: 'surveillance' | 'privacy' | 'cbdc' | 
     selfcustody: <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-purple-500" />}><SelfCustodySimulator onComplete={function (): void {
       throw new Error('Function not implemented.');
     } } /></Suspense>,
-    bitcoin: <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-purple-500" />}><SelfCustodySimulator onComplete={function (): void {
+    BitcoinFreedomExplorer: <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-purple-500" />}><SelfCustodySimulator onComplete={function (): void {
+      throw new Error('Function not implemented.');
+    } } /></Suspense>,
+    bitcoicn: <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-purple-500" />}><SelfCustodySimulator onComplete={function (): void {
       throw new Error('Function not implemented.');
     } } /></Suspense>,
   };

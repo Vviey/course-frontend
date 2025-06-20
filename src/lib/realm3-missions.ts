@@ -757,14 +757,14 @@ export const realm3Missions: MissionContent[] = [
     simulationType: "hashing",
     content: createContent([
       React.createElement("img", {
-        src: "https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-3-Lightning-Network.png",
+        src: "https://bitcoiners.africa/wp-content/uploads/2025/06/mempool-scaled.png",
         alt: "Everyday Bitcoin Tools",
         className: "w-full h-48 object-cover rounded-lg mb-4"
       }),
       React.createElement('p', { className: "mb-4", key: "intro" },
         "The mempool (memory pool) is where Bitcoin transactions wait before being included in a block. Understanding " +
         "the mempool is crucial for fee estimation, transaction timing, and comprehending Bitcoin's transaction lifecycle."
-      ),
+      ),   
       React.createElement('h3', { className: "text-xl font-semibold mb-2 text-blue-400", key: "what-is-mempool" }, "What is the Mempool?"),
       React.createElement('p', { className: "mb-4", key: "mempool-desc" },
         "The mempool is a temporary storage area where each Bitcoin node keeps valid but unconfirmed transactions. " +
@@ -2213,6 +2213,7 @@ export const realm3Missions: MissionContent[] = [
     description: '',
     objectives: []
   },
+
     {
       id: 13,
       title: "Bitcoin Security Best Practices",

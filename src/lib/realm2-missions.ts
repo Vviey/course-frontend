@@ -1,12 +1,14 @@
 // Data for Realm 2 missions
 
+import { Bitcoin } from "lucide-react";
+
 export interface Realm2MissionData {
   completed: any;
   id: number;
   title: string;
   subtitle: string;
   description: string;
-  simulationType: 'surveillance' | 'privacy' | 'cbdc' | 'bitcoin' | 'lightning' | 'selfcustody';
+  simulationType: 'surveillance' | 'privacy' | 'cbdc' | 'BitcoinFreedomExplorer'|'bitcoin' | 'lightning' | 'selfcustody';
   simulationData?: any;
   content: string;
 }
@@ -705,44 +707,210 @@ export const realm2Missions: Realm2MissionData[] = [
   {
     id: 106,
     title: "Bitcoin's Transparency",
-    subtitle: "Balancing public ledgers with pseudonymity",
-    description: "Discover how Bitcoin balances transparency with pseudonymity.",
+    subtitle: "Public but private: How Bitcoin balances openness with freedom",
+    description: "Discover how Bitcoin's transparent ledger protects your privacy while ensuring accountability.",
     simulationType: 'bitcoin',
     content: `
-      In a hidden library beneath the Citadel, Asha meets a cryptographer who explains how Bitcoin's approach 
-      to transparency and privacy differs from surveillance currencies.
+      <div style="background-color: rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 153, 0, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+        <img src="https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-2-Bitcoins-Transparency.png" 
+          alt="Bitcoin Transparency" 
+          style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
+        
+        <h2 style="color: #FF9900; margin-top: 0; text-align: center;">Bitcoin: The See-Through Safe</h2>
+        
+        <div style="background-color: rgba(255, 153, 0, 0.1); border-radius: 8px; padding: 16px; margin: 20px 0;">
+          <p style="margin: 0; text-align: center; font-size: 18px;">
+            <em>"A system where everyone can verify the rules, but no one can see your business unless you choose to show it."</em>
+          </p>
+        </div>
+        
+        <p style="margin-bottom: 20px;">
+          Bitcoin's blockchain is like a <strong>glass vault</strong> - everyone can see the structure and verify its integrity, but your personal transactions remain pseudonymous unless you reveal your identity.
+        </p>
+      </div>
+  
+      <!-- Core Transparency Features -->
+      <div style="background-color: rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 153, 0, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+        <h2 style="color: #FF9900; margin-top: 0; border-bottom: 2px solid rgba(255, 153, 0, 0.3); padding-bottom: 8px;">Three Layers of Transparency</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 16px;">
+          <!-- Layer 1 -->
+          <div style="background: linear-gradient(to bottom, rgba(255,153,0,0.1), transparent); border-radius: 8px; padding: 16px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">🔍</div>
+            <h3 style="color: #FFCC00; margin-top: 0;">Public Ledger</h3>
+            <p style="margin-bottom: 0;">
+              Every transaction is recorded on the blockchain for anyone to verify - no hidden money creation or secret spending
+            </p>
+          </div>
+          
+          <!-- Layer 2 -->
+          <div style="background: linear-gradient(to bottom, rgba(255,153,0,0.1), transparent); border-radius: 8px; padding: 16px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">👤</div>
+            <h3 style="color: #FFCC00; margin-top: 0;">Pseudonymity</h3>
+            <p style="margin-bottom: 0;">
+              Your identity isn't tied to wallet addresses unless you choose to reveal it
+            </p>
+          </div>
+          
+          <!-- Layer 3 -->
+          <div style="background: linear-gradient(to bottom, rgba(255,153,0,0.1), transparent); border-radius: 8px; padding: 16px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">⚙️</div>
+            <h3 style="color: #FFCC00; margin-top: 0;">Open Rules</h3>
+            <p style="margin-bottom: 0;">
+              The monetary policy (21 million cap) and transaction rules are visible to all and can't be changed secretly
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- How It Works Section -->
+      <div style="background-color: rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 153, 0, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+        <h2 style="color: #FF9900; margin-top: 0;">The Privacy Paradox Solved</h2>
+        
+        <div style="display: flex; align-items: center; gap: 20px; margin: 24px 0; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 200px;">
+            <p style="margin-bottom: 16px;">
+              Unlike traditional finance where institutions see everything but users see nothing, Bitcoin <strong>flips this model</strong>:
+            </p>
+            
+            <div style="background-color: rgba(0, 0, 0, 0.1); border-radius: 6px; padding: 12px; margin-bottom: 12px;">
+              <p style="margin: 0; font-weight: bold; color: #FFCC00;">Traditional Banking</p>
+              <p style="margin: 8px 0 0 0;">Institutions see all your transactions → You see nothing of their operations</p>
+            </div>
+            
+            <div style="background-color: rgba(0, 153, 102, 0.1); border-radius: 6px; padding: 12px;">
+              <p style="margin: 0; font-weight: bold; color: #00AA00;">Bitcoin</p>
+              <p style="margin: 8px 0 0 0;">No one sees your identity → Everyone sees the system's integrity</p>
+            </div>
+          </div>
+          
+          <div style="flex: 1; min-width: 200px; text-align: center;">
+            <div style="font-size: 80px;">🔄</div>
+          </div>
+        </div>
+        
+        <div style="background-color: rgba(255, 153, 0, 0.1); border-left: 4px solid #FF9900; padding: 12px; margin-top: 16px;">
+          <p style="margin: 0; font-style: italic;">
+            "Bitcoin gives you the receipts to audit the system while keeping your personal transactions discreet."
+          </p>
+        </div>
+      </div>
+  
+      <!-- Practical Examples -->
+      <div style="background-color: rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 153, 0, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+        <h2 style="color: #FF9900; margin-top: 0;">Transparency In Action</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px;">
+          <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 8px; padding: 16px; border-left: 4px solid #009900;">
+            <h3 style="color: #FFCC00; margin-top: 0; font-size: 18px;">Charity Audits</h3>
+            <p style="margin-bottom: 0;">Nonprofits can prove exactly how donations are spent without revealing donor identities</p>
+          </div>
+          
+          <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 8px; padding: 16px; border-left: 4px solid #006600;">
+            <h3 style="color: #FFCC00; margin-top: 0; font-size: 18px;">Business Payments</h3>
+            <p style="margin-bottom: 0;">Companies can verify supplier payments while keeping internal accounting private</p>
+          </div>
+          
+          <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 8px; padding: 16px; border-left: 4px solid #003300;">
+            <h3 style="color: #FFCC00; margin-top: 0; font-size: 18px;">Personal Finance</h3>
+            <p style="margin-bottom: 0;">You can prove transactions occurred without exposing your full financial history</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Empowerment Section -->
+      <div style="background-color: rgba(255, 153, 0, 0.05); border-radius: 8px; padding: 20px;">
+        <h2 style="color: #FF9900; margin-top: 0; text-align: center;">Your Transparency Toolkit</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 24px 0;">
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background-color: rgba(255, 153, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; font-size: 32px;">
+              🌐
+            </div>
+            <h3 style="color: #FFCC00; margin: 0 0 8px 0;">Block Explorers</h3>
+            <p style="margin: 0; font-size: 14px;">Public tools to verify any transaction</p>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background-color: rgba(255, 153, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; font-size: 32px;">
+              🛡️
+            </div>
+            <h3 style="color: #FFCC00; margin: 0 0 8px 0;">Privacy Wallets</h3>
+            <p style="margin: 0; font-size: 14px;">Generate new addresses for each transaction</p>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background-color: rgba(255, 153, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; font-size: 32px;">
+              📊
+            </div>
+            <h3 style="color: #FFCC00; margin: 0 0 8px 0;">Audit Tools</h3>
+            <p style="margin: 0; font-size: 14px;">Verify your own transaction history</p>
+          </div>
+        </div>
+      </div>    
 
-      ## Transparent Yet Private?
-
-      The cryptographer explains that Bitcoin's blockchain is completely transparent - anyone can view every transaction 
-      ever made. However, these transactions are tied to pseudonymous addresses rather than personal identities.
-
-      ### Bitcoin's Privacy Model
-      - All transactions are public and verifiable by anyone
-      - Addresses are pseudonymous (not directly tied to identities)
-      - Users can generate new addresses for each transaction
-      - No built-in surveillance or identity verification
-      - Privacy is possible but requires careful practices
-
-      Through an interactive demonstration, Asha explores the Bitcoin blockchain, examining real transactions 
-      while learning about the challenges of maintaining privacy when using Bitcoin.
-
-      ## Privacy Challenges
-
-      The cryptographer demonstrates various ways Bitcoin addresses can be linked to real identities:
-
-      - Exchange KYC (Know Your Customer) requirements
-      - Address reuse and transaction patterns
-      - Blockchain analysis and clustering techniques
-      - Correlation attacks using timing and amounts
-
-      Despite these challenges, Asha learns that Bitcoin represents a fundamental shift in the privacy model: 
-      instead of authority-granted privacy that can be revoked, Bitcoin offers a base layer of pseudonymity 
-      that users can enhance with proper techniques.
+        <div style="background-color: rgba(255, 153, 0, 0.05); border-radius: 8px; padding: 20px; margin-top: 24px;">
+          <h2 style="color: #FF9900; margin-top: 0; text-align: center;">Wait... What Is This Bitcoin Thing Anyway?</h2>
+          
+          <div style="display: flex; align-items: center; gap: 20px; margin: 24px 0; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <p style="margin-bottom: 16px;">
+                <em>"If you don't believe me or don't get it, I don't have time to try to convince you, sorry."</em><br>
+                <span style="display: inline-block; margin-top: 8px; font-weight: bold;">— Satoshi Nakamoto (2010)</span>
+              </p>
+              
+              <p>While we've been talking about Bitcoin's features, you might be wondering: <strong>Where did this mysterious money come from?</strong></p>
+            </div>
+            <div style="flex: 1; min-width: 200px; text-align: center;">
+              <div style="font-size: 60px;">🤔</div>
+            </div>
+          </div>
+          
+          <div style="background-color: rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 16px; margin: 20px 0;">
+            <h3 style="color: #FFCC00; margin-top: 0;">October 31, 2008: A Financial Revolution Begins</h3>
+            <img src="https://bitcoiners.africa/wp-content/uploads/2025/06/bankbaillout.jpg" 
+              alt="2008 Financial Crisis Headlines" 
+              style="width: 100%; border-radius: 8px; margin: 12px 0;">
+            <p>As banks collapsed and governments bailed out financial institutions, an anonymous person (or group) named <strong>Satoshi Nakamoto</strong> published the Bitcoin whitepaper.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+              <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 6px; padding: 12px;">
+                <div style="font-size: 24px; margin-bottom: 8px;">👤</div>
+                <p style="margin: 0; font-size: 14px;"><strong>Anonymous Creator:</strong> Satoshi's true identity remains unknown</p>
+              </div>
+              <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 6px; padding: 12px;">
+                <div style="font-size: 24px; margin-bottom: 8px;">📜</div>
+                <p style="margin: 0; font-size: 14px;"><strong>9-Page Whitepaper:</strong> Explained a peer-to-peer electronic cash system</p>
+              </div>
+              <div style="background-color: rgba(0, 0, 0, 0.15); border-radius: 6px; padding: 12px;">
+                <div style="font-size: 24px; margin-bottom: 8px;">💻</div>
+                <p style="margin: 0; font-size: 14px;"><strong>Jan 2009:</strong> Network launched with first block ("Genesis Block")</p>
+              </div>
+            </div>
+          </div>
+          
+          <div style="background-color: rgba(255, 153, 0, 0.1); border-left: 4px solid #FF9900; padding: 12px; margin: 20px 0;">
+            <p style="margin: 0;">
+              <strong>Fun Fact:</strong> Satoshi embedded a <strong>hidden message</strong> in Bitcoin's first block:<br>
+              <em>"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"</em> - a headline from that day's London Times.
+              <img src="https://bitcoiners.africa/wp-content/uploads/2025/06/genesisblock.jpg" 
+              alt="2008 Financial Crisis Headlines" 
+              style="width: 100%; border-radius: 8px; margin: 12px 0;">
+            </p>
+          </div>
+          
+          <div style="text-align: center; margin-top: 24px;">
+            <a href="https://bitcoiners.africa/learn-bitcoin/bitcoin-whitepaper/" style="display: inline-block; background-color: #FF9900; color: black; padding: 12px 24px; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              Read the Original Whitepaper 📄
+            </a>
+            <p style="font-size: 14px; margin-top: 12px;">
+              Don't worry if you don't understand it all - that's why you're here! 😉
+            </p>
+          </div>
+        </div>
     `,
     completed: undefined
   },
-
   {
     id: 107,
     title: "Self-Custody",

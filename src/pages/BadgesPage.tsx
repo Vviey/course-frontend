@@ -34,7 +34,7 @@ const userBadges: Badge[] = [
     description: "Completed all lessons about the history and evolution of money",
     realmId: 1,
     dateEarned: "2025-03-15",
-    imageUrl: "/badges/money-historian.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Money-Historian.png",
     isEarned: true
   },
   {
@@ -43,7 +43,7 @@ const userBadges: Badge[] = [
     description: "Successfully understood and applied cryptography principles",
     realmId: 2,
     dateEarned: "2025-03-18",
-    imageUrl: "/badges/crypto-defender.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Crypto-Defender.png",
     isEarned: true
   },
   {
@@ -52,7 +52,7 @@ const userBadges: Badge[] = [
     description: "Mastered the core concepts of Bitcoin",
     realmId: 2,
     dateEarned: "2025-03-20",
-    imageUrl: "/badges/bitcoin-beginner.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Beginner.png",
     isEarned: true
   },
   {
@@ -61,7 +61,7 @@ const userBadges: Badge[] = [
     description: "Set up and secured Bitcoin wallets correctly",
     realmId: 2,
     dateEarned: "",
-    imageUrl: "/badges/wallet-wizard.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Wallet-Wizard.png",
     isEarned: false
   },
   {
@@ -70,7 +70,7 @@ const userBadges: Badge[] = [
     description: "Understands how Bitcoin transactions work",
     realmId: 2,
     dateEarned: "",
-    imageUrl: "/badges/transaction-expert.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Transaction-expert.png",
     isEarned: false
   },
   {
@@ -79,7 +79,7 @@ const userBadges: Badge[] = [
     description: "Comprehends the Bitcoin network and consensus mechanisms",
     realmId: 3,
     dateEarned: "",
-    imageUrl: "/badges/network-guardian.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Network-Guardian.png",
     isEarned: false
   },
   {
@@ -88,7 +88,7 @@ const userBadges: Badge[] = [
     description: "Understands Bitcoin mining and energy considerations",
     realmId: 2,
     dateEarned: "",
-    imageUrl: "/badges/sustainable-miner.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Sustainable-Miner.png",
     isEarned: false
   },
   {
@@ -97,7 +97,7 @@ const userBadges: Badge[] = [
     description: "Successfully learned about Lightning Network and scaling",
     realmId: 2,
     dateEarned: "",
-    imageUrl: "/badges/lightning-master.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Lightning-Master.png",
     isEarned: false
   },
   {
@@ -106,7 +106,7 @@ const userBadges: Badge[] = [
     description: "Knows how to secure Bitcoin and avoid common risks",
     realmId: 3,
     dateEarned: "",
-    imageUrl: "/badges/bitcoin-guardian.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Guardian.png",
     isEarned: false
   },
   {
@@ -115,7 +115,7 @@ const userBadges: Badge[] = [
     description: "Understands Bitcoin governance and decentralization",
     realmId: 4,
     dateEarned: "",
-    imageUrl: "/badges/decentralization-defender.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Decentralization-Defender.png",
     isEarned: false
   },
   {
@@ -124,7 +124,7 @@ const userBadges: Badge[] = [
     description: "Learned about real-world Bitcoin applications in Africa",
     realmId: 5,
     dateEarned: "",
-    imageUrl: "/badges/bitcoin-ambassador.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Ambassader.png",
     isEarned: false
   }
 ];
@@ -135,7 +135,7 @@ const certificates: Certificate[] = [
     name: "Bitcoin Fundamentals Certificate",
     description: "Completed Realms 1 & 2: Origins and Forest of Sparks",
     dateEarned: "2025-03-22",
-    imageUrl: "/certificates/bitcoin-fundamentals.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Fundamentals.png",
     isEarned: true
   },
   {
@@ -143,7 +143,7 @@ const certificates: Certificate[] = [
     name: "Bitcoin Security & Sovereignty Certificate",
     description: "Completed Realm 3: The Central Citadel",
     dateEarned: "",
-    imageUrl: "/certificates/bitcoin-security.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Security.png",
     isEarned: false
   },
   {
@@ -151,7 +151,7 @@ const certificates: Certificate[] = [
     name: "Bitcoin Governance Certificate",
     description: "Completed Realm 4: Council of Forks",
     dateEarned: "",
-    imageUrl: "/certificates/bitcoin-governance.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Governance.png",
     isEarned: false
   },
   {
@@ -159,7 +159,7 @@ const certificates: Certificate[] = [
     name: "Bitcoin in Africa Certificate",
     description: "Completed Realm 5: Ubuntu Village",
     dateEarned: "",
-    imageUrl: "/certificates/bitcoin-africa.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Africa.png",
     isEarned: false
   },
   {
@@ -167,7 +167,7 @@ const certificates: Certificate[] = [
     name: "Bitcoin Quest Master Certificate",
     description: "Completed all realms and earned all badges in Asha's Journey",
     dateEarned: "",
-    imageUrl: "/certificates/bitcoin-master.svg",
+    imageUrl: "https://bitcoiners.africa/wp-content/uploads/2025/06/Bitcoin-Master.png",
     isEarned: false
   }
 ];
@@ -430,5 +430,4 @@ export default function BadgesPage() {
         </div>
       )}
     </ThemeContainer>
-  );
-}
+  );}
