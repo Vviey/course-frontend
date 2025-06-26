@@ -101,10 +101,10 @@ const ProfilePage = () => {
           variant="ghost" 
           size="sm" 
           className="mb-4" 
-          onClick={() => setLocation(`/realm/${currentRealm}`)}
+          onClick={() => setLocation(`/home`)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Realm
+          Back to Home
         </Button>
         
         {/* Profile header */}

@@ -36,6 +36,7 @@ interface UserProgress {
   earnedBadges: number[];
   currentRealm?: number;
   backpack: HighlightedItem[];
+  completedRealms?: number[]; // Track which realms are fully completed
 }
 
 interface AuthContextType {
@@ -45,11 +46,15 @@ interface AuthContextType {
   loading: boolean;
   isLoading: boolean; // Alias for loading for backward compatibility
   
+  // Testing mode
+  testingMode: boolean;
+  setTestingMode: (enabled: boolean) => void;
+  
   // User object for compatibility with existing components
   user: {
     username: string | null;
     userId?: string;
-    profile?: UserProfile;
+    profile?: UserProfile | null;
     progress?: {
       completedRealms?: number[];
       completedMissions?: number[];
@@ -71,11 +76,17 @@ interface AuthContextType {
   completedMissions: number[];
   unlockedRealms: number[];
   earnedBadges: number[];
+  completedRealms: number[];
   
   // Progress update methods
   completeMission: (missionId: number) => void;
   unlockRealm: (realmId: number) => void;
   earnBadge: (badgeId: number) => void;
+  completeRealm: (realmId: number) => void;
+  
+  // Helper methods
+  isRealmUnlocked: (realmId: number) => boolean;
+  isRealmCompleted: (realmId: number) => boolean;
   
   // User profile methods
   userProfile: UserProfile | null;
@@ -103,6 +114,8 @@ const initialAuthContext: AuthContextType = {
   username: null,
   loading: true,
   isLoading: true,
+  testingMode: false,
+  setTestingMode: () => {},
   user: null,
   login: () => {},
   register: () => {},
@@ -110,11 +123,15 @@ const initialAuthContext: AuthContextType = {
   currentRealm: 1,
   setCurrentRealm: () => {},
   completedMissions: [],
-  unlockedRealms: [1, 2, 3, 4, 5, 6, 7],
+  unlockedRealms: [1],
   earnedBadges: [],
+  completedRealms: [],
   completeMission: () => {},
   unlockRealm: () => {},
   earnBadge: () => {},
+  completeRealm: () => {},
+  isRealmUnlocked: () => false,
+  isRealmCompleted: () => false,
   userProfile: null,
   updateProfile: () => {},
   updateUserProfile: () => {},
@@ -144,10 +161,11 @@ const initialProgress: UserProgress = {
     avatarColor: '#ffcc00'
   },
   completedMissions: [],
-  unlockedRealms: [1, 2, 3, 4, 5, 6, 7], // All realms unlocked by default
+  unlockedRealms: [1], // Only realm 1 unlocked initially
   earnedBadges: [],
   currentRealm: 1,
-  backpack: []
+  backpack: [],
+  completedRealms: []
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -156,20 +174,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [username, setUsername] = useState<string | null>(null);
   const [currentRealm, setCurrentRealm] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true); // Start with loading true
+  const [testingMode, setTestingMode] = useState<boolean>(false);
   
   // Progress state
   const [completedMissions, setCompletedMissions] = useState<number[]>([]);
   const [unlockedRealms, setUnlockedRealms] = useState<number[]>([1]);
   const [earnedBadges, setEarnedBadges] = useState<number[]>([]);
+  const [completedRealms, setCompletedRealms] = useState<number[]>([]);
   
   // User profile and backpack state
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [backpack, setBackpack] = useState<HighlightedItem[]>([]);
   
+  // Helper function to check if a realm is unlocked
+  const isRealmUnlocked = (realmId: number): boolean => {
+    if (testingMode) return true; // All realms unlocked in testing mode
+    return unlockedRealms.includes(realmId);
+  };
+  
+  // Helper function to check if a realm is completed
+  const isRealmCompleted = (realmId: number): boolean => {
+    return completedRealms.includes(realmId);
+  };
+  
+  // Function to automatically unlock next realm when current is completed
+  const checkRealmProgression = (newCompletedRealms: number[]) => {
+    const shouldUnlockRealms: number[] = [];
+    
+    // Logic: Realm N+1 unlocks when Realm N is completed
+    for (let i = 1; i <= 6; i++) { // Assuming you have 7 realms (1-7)
+      if (newCompletedRealms.includes(i) && !unlockedRealms.includes(i + 1)) {
+        shouldUnlockRealms.push(i + 1);
+      }
+    }
+    
+    if (shouldUnlockRealms.length > 0) {
+      setUnlockedRealms(prev => [...prev, ...shouldUnlockRealms]);
+    }
+  };
+  
   // Check for existing user data in localStorage
   useEffect(() => {
     // Check if auth bypass is enabled
-    const bypassAuth = typeof window !== 'undefined' && window.__BYPASS_AUTH__ === true;
+    const bypassAuth = typeof window !== 'undefined' && (window as any).__BYPASS_AUTH__ === true;
     
     try {
       if (bypassAuth) {
@@ -186,10 +233,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             bio: 'Bitcoin learning enthusiast exploring the realms of digital currency.'
           },
           completedMissions: [],
-          unlockedRealms: [1, 2, 3, 4, 5, 6, 7], // All realms unlocked
+          unlockedRealms: [1], // Only realm 1 unlocked initially
           earnedBadges: [],
           currentRealm: 1,
-          backpack: []
+          backpack: [],
+          completedRealms: []
         };
         
         // Set state with default user
@@ -198,7 +246,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setCompletedMissions(defaultUser.completedMissions);
         setUnlockedRealms(defaultUser.unlockedRealms);
         setEarnedBadges(defaultUser.earnedBadges);
-        setCurrentRealm(defaultUser.currentRealm);
+        setCompletedRealms(defaultUser.completedRealms || []);
+        setCurrentRealm(defaultUser.currentRealm ?? 1);
         setUserProfile(defaultUser.profile);
         setBackpack(defaultUser.backpack);
         
@@ -216,9 +265,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setCompletedMissions(userData.completedMissions || []);
             setUnlockedRealms(userData.unlockedRealms || [1]);
             setEarnedBadges(userData.earnedBadges || []);
+            setCompletedRealms(userData.completedRealms || []);
             
             if (userData.currentRealm) {
-              setCurrentRealm(userData.currentRealm);
+              setCurrentRealm(userData.currentRealm ?? 1);
             }
             
             if (userData.profile) {
@@ -263,14 +313,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           unlockedRealms,
           earnedBadges,
           currentRealm,
-          backpack
+          backpack,
+          completedRealms
         };
         localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData));
       } catch (error) {
         console.error('Failed to save user data to localStorage:', error);
       }
     }
-  }, [isAuthenticated, username, userProfile, completedMissions, unlockedRealms, earnedBadges, currentRealm, backpack]);
+  }, [isAuthenticated, username, userProfile, completedMissions, unlockedRealms, earnedBadges, currentRealm, backpack, completedRealms]);
   
   // Login function - saves user data to localStorage
   const login = (username: string, password: string) => {
@@ -288,6 +339,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setCompletedMissions(userData.completedMissions);
           setUnlockedRealms(userData.unlockedRealms);
           setEarnedBadges(userData.earnedBadges);
+          setCompletedRealms(userData.completedRealms || []);
           if (userData.currentRealm) {
             setCurrentRealm(userData.currentRealm);
           }
@@ -322,8 +374,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     // For a new user, initialize with default progress
     setCompletedMissions([]);
-    setUnlockedRealms([1, 2, 3, 4, 5, 6, 7]); // All realms unlocked
+    setUnlockedRealms([1]); // Only realm 1 unlocked
     setEarnedBadges([]);
+    setCompletedRealms([]);
   };
   
   // Register function - creates a new user in localStorage
@@ -349,8 +402,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     // Initialize new user with default progress
     setCompletedMissions([]);
-    setUnlockedRealms([1, 2, 3, 4, 5, 6, 7]); // All realms unlocked
+    setUnlockedRealms([1]); // Only realm 1 unlocked
     setEarnedBadges([]);
+    setCompletedRealms([]);
   };
   
   // Logout function - clears current session
@@ -367,7 +421,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
   
-  // Unlock a new realm
+  // Complete a realm (this should be called when all missions in a realm are done)
+  const completeRealm = (realmId: number) => {
+    if (!completedRealms.includes(realmId)) {
+      const newCompletedRealms = [...completedRealms, realmId];
+      setCompletedRealms(newCompletedRealms);
+      
+      // Check if we should unlock the next realm
+      checkRealmProgression(newCompletedRealms);
+    }
+  };
+  
+  // Unlock a new realm (manual unlock - you might still need this for special cases)
   const unlockRealm = (realmId: number) => {
     if (!unlockedRealms.includes(realmId)) {
       setUnlockedRealms(prev => [...prev, realmId]);
@@ -473,10 +538,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     userId: userProfile?.userId,
     profile: userProfile,
     progress: {
-      completedRealms: [], // We don't track this separately currently
+      completedRealms,
       completedMissions,
-      unlockedRealms,
-      currentRealm  // Add the currentRealm property
+      unlockedRealms: testingMode ? [1, 2, 3, 4, 5, 6, 7] : unlockedRealms, // All unlocked in testing mode
+      currentRealm
     }
   } : null;
 
@@ -484,7 +549,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAuthenticated,
     username,
     loading,
-    isLoading: loading, // Provide the alias for backward compatibility
+    isLoading: loading,
+    testingMode,
+    setTestingMode,
     user,
     login,
     register,
@@ -492,11 +559,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     currentRealm,
     setCurrentRealm,
     completedMissions,
-    unlockedRealms,
+    unlockedRealms: testingMode ? [1, 2, 3, 4, 5, 6, 7] : unlockedRealms, // All unlocked in testing mode
     earnedBadges,
+    completedRealms,
     completeMission,
     unlockRealm,
     earnBadge,
+    completeRealm,
+    isRealmUnlocked,
+    isRealmCompleted,
     userProfile,
     updateProfile,
     updateUserProfile,

@@ -4,7 +4,7 @@ import { Mission } from '@/components/missions/Mission';
 import { realm1Missions } from '@/lib/realm1-missions';
 import { useAuth } from '@/context/AuthContext';
 import { originTheme } from '@/lib/realm-themes';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Lock, CheckCircle } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 
 // Lazy load simulation components
@@ -18,7 +18,14 @@ const TradeRouteMap = lazy(() => import('@/components/simulations/TradeRouteMap'
 export default function Realm1Mission() {
   const [, setLocation] = useLocation();
   const { missionId } = useParams<{ missionId: string }>();
-  const { user, loading } = useAuth();
+  const { 
+    user, 
+    loading, 
+    completedMissions, 
+    completeMission, 
+    completeRealm,
+    testingMode 
+  } = useAuth();
   const [missionComplete, setMissionComplete] = useState(false);
   const [contentRead, setContentRead] = useState(false);
   const [shareContent, setShareContent] = useState('');
@@ -31,6 +38,27 @@ export default function Realm1Mission() {
   // Current mission data
   const missionData = realm1Missions.find(m => m.id === missionDataId);
 
+  // Check if mission is unlocked
+  const isMissionUnlocked = (missionNum: number): boolean => {
+    if (testingMode) return true; // All missions unlocked in testing mode
+    if (missionNum === 1) return true; // First mission is always unlocked
+    
+    // Mission N is unlocked if mission N-1 is completed
+    const previousMissionId = 100 + (missionNum - 1);
+    return completedMissions.includes(previousMissionId);
+  };
+
+  // Check if mission is completed
+  const isMissionCompleted = (missionNum: number): boolean => {
+    const missionId = 100 + missionNum;
+    return completedMissions.includes(missionId);
+  };
+
+  // Check if this is the last mission in the realm
+  const isLastMission = (): boolean => {
+    return missionNumber === realm1Missions.length;
+  };
+
   // Redirect if not authenticated
   useEffect(() => {
     if (!loading && !user) {
@@ -38,12 +66,35 @@ export default function Realm1Mission() {
     }
   }, [user, loading, setLocation]);
 
+  // Check if user can access this mission
+  useEffect(() => {
+    if (!loading && missionData && !isMissionUnlocked(missionNumber)) {
+      // Redirect to realm home if mission is locked
+      setLocation('/realm/1/home');
+    }
+  }, [loading, missionData, missionNumber, completedMissions, testingMode]);
+
   // Handle mission completion
   const handleMissionComplete = () => {
+    if (!missionData) return;
+
+    // Mark mission as completed
+    completeMission(missionDataId);
     setMissionComplete(true);
-    setTimeout(() => {
-      setLocation('/realm/1/home');
-    }, 2000);
+
+    // Check if this is the last mission in the realm
+    if (isLastMission()) {
+      // Mark realm as completed
+      completeRealm(1);
+      
+      setTimeout(() => {
+        setLocation('/realm/1/home?completed=true');
+      }, 3000); // Longer delay for realm completion celebration
+    } else {
+      setTimeout(() => {
+        setLocation('/realm/1/home');
+      }, 2000);
+    }
   };
 
   // Render appropriate simulation based on mission type
@@ -101,50 +152,62 @@ export default function Realm1Mission() {
   const primaryColor = originTheme?.colors?.primary || "#B87F31";
   const secondaryColor = originTheme?.colors?.secondary || "#E6A23C";
 
-   // Background image configuration
-   const backgroundStyles = {
-    backgroundImage: `url('https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-1-African-Currency-Eolution.png')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed'
-  };
+  // Check if mission is locked
+  const isLocked = !isMissionUnlocked(missionNumber);
+  const isCompleted = isMissionCompleted(missionNumber);
 
-  return (
-    <div className="h-screen" style={{ backgroundColor: bgColor }}>
-      {/* Mission navigation header
-      <header className="mx-auto">
-        <button 
-          onClick={() => setLocation('/realm/1/home')} 
-          className="flex items-center transition-colors font-medium"
-          style={{ color: secondaryColor }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-          </svg>
-          Back to Home
-        </button>
-      </header> */}
-      
-      {/* Mission completion message */}
-      {missionComplete && (
-        <div className="fixed top-0 left-0 right-0 bg-green-600 text-white p-3 text-center z-50">
-          Mission complete! Great job! Redirecting to Realm...
-        </div>
-      )}
-      
-      {/* Mission not found message */}
-      {!missionData && (
-        <div className="mx-auto bg-amber-100 border-2 border-amber-500 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-amber-900">Mission Not Found</h2>
-          <p className="text-amber-800">This mission doesn't exist yet or may have been moved.</p>
-          <button 
-            onClick={() => setLocation('/realm/1/home')} 
-            className="bg-amber-600 hover:bg-amber-700 text-white font-medium transition-colors"
+  // If mission is locked, show lock screen
+  if (isLocked && !testingMode) {
+    return (
+      <div className="h-screen flex items-center justify-center" style={{ backgroundColor: bgColor }}>
+        <div className="max-w-md mx-auto text-center p-8 rounded-xl bg-black/30 border border-gray-600">
+          <Lock className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+          <h2 className="text-2xl font-bold mb-4" style={{ color: primaryColor }}>
+            Mission Locked
+          </h2>
+          <p className="text-gray-300 mb-6">
+            Complete Mission {missionNumber - 1} to unlock this mission.
+          </p>
+          <button
+            onClick={() => setLocation('/realm/1/home')}
+            className="px-6 py-3 rounded-lg font-medium transition-colors"
+            style={{ backgroundColor: primaryColor, color: 'white' }}
           >
             Return to Realm
           </button>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-screen" style={{ backgroundColor: bgColor }}>
+      {/* Mission completion message */}
+      {missionComplete && (
+        <div className="fixed top-0 left-0 right-0 z-50">
+          {isLastMission() ? (
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-4 text-center">
+              <CheckCircle className="inline h-6 w-6 mr-2" />
+              🎉 Realm 1 Complete! You've mastered the origins of money! 🎉
+              <div className="text-sm mt-1">Unlocking next realm...</div>
+            </div>
+          ) : (
+            <div className="bg-green-600 text-white p-3 text-center">
+              <CheckCircle className="inline h-5 w-5 mr-2" />
+              Mission complete! Great job! Next mission unlocked!
+            </div>
+          )}
+        </div>
       )}
+
+      {/* Mission status indicator */}
+      <div className="fixed top-4 right-4 z-40">
+        <div className="flex items-center space-x-2 bg-black/50 rounded-lg px-3 py-2">
+          <span className="text-sm text-gray-300">Mission {missionNumber}</span>
+          {isCompleted && <CheckCircle className="h-4 w-4 text-green-400" />}
+          {testingMode && <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">TEST</span>}
+        </div>
+      </div>
       
       {/* Mission content */}
       {missionData && (
@@ -159,29 +222,78 @@ export default function Realm1Mission() {
               <div className="flex justify-center">
                 <button
                   onClick={() => setContentRead(true)}
-                  className="text-white font-semibold rounded-lg transition-colors shadow-lg flex items-center group"
+                  className="text-white font-semibold rounded-lg transition-colors shadow-lg flex items-center group px-8 py-4"
                   style={{ 
-                    backgroundImage: `url('https://bitcoiners.africa/wp-content/uploads/2025/06/Realm-1-African-Currency-Eolution.png')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundAttachment: 'fixed'
+                    backgroundColor: primaryColor,
+                    boxShadow: `0 0 20px ${primaryColor}40`
                   }}
+                  disabled={isCompleted}
                 >
-                  Start Challenge
-                  <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  {isCompleted ? (
+                    <>
+                      <CheckCircle className="mr-2 h-5 w-5" />
+                      Mission Completed
+                    </>
+                  ) : (
+                    <>
+                      Start Challenge
+                      <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </button>
               </div>
             </div>
           ) : (
-            <div>
-              <h2 className="text-2xl font-bold" style={{ color: primaryColor }}>
-                Challenge: {missionData?.title}
-              </h2>
-              <p className="text-gray-300">
-                Complete this challenge to unlock the next mission and continue your journey through the Realm of Origins.
-              </p>
-              <div>
-                {renderSimulation()}
+            <div className="p-6">
+              <div className="max-w-4xl mx-auto">
+                <div className="mb-6">
+                  <h2 className="text-3xl font-bold mb-2" style={{ color: primaryColor }}>
+                    Challenge: {missionData?.title}
+                  </h2>
+                  <p className="text-gray-300 mb-4">
+                    Complete this challenge to unlock the next mission and continue your journey through the Realm of Origins.
+                  </p>
+                  
+                  {/* Mission progress indicator */}
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm" style={{ color: secondaryColor }}>
+                        Progress:
+                      </span>
+                      <div className="flex space-x-1">
+                        {realm1Missions.map((_, index) => {
+                          const missionNum = index + 1;
+                          const isCurrentMission = missionNum === missionNumber;
+                          const isMissionDone = isMissionCompleted(missionNum);
+                          const isMissionUnlock = isMissionUnlocked(missionNum);
+                          
+                          return (
+                            <div
+                              key={missionNum}
+                              className={`h-3 w-8 rounded-full ${
+                                isMissionDone 
+                                  ? 'bg-green-500' 
+                                  : isCurrentMission 
+                                    ? 'bg-blue-500' 
+                                    : isMissionUnlock 
+                                      ? 'bg-gray-500' 
+                                      : 'bg-gray-700'
+                              }`}
+                              title={`Mission ${missionNum} ${isMissionDone ? '(Completed)' : isCurrentMission ? '(Current)' : isMissionUnlock ? '(Available)' : '(Locked)'}`}
+                            />
+                          );
+                        })}
+                      </div>
+                      <span className="text-sm text-gray-400">
+                        {completedMissions.filter(id => id >= 101 && id <= 100 + realm1Missions.length).length}/{realm1Missions.length}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-black/20 rounded-xl p-6">
+                  {renderSimulation()}
+                </div>
               </div>
             </div>
           )}
@@ -189,12 +301,12 @@ export default function Realm1Mission() {
           {/* Social media sharing section */}
           {showShareModal && (
             <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-              <div className="rounded-xl" style={{ backgroundColor: originTheme?.colors?.backgroundLight || "#694E1E" }}>
-                <h3 className="text-2xl font-bold" style={{ color: secondaryColor }}>
+              <div className="rounded-xl p-6 max-w-md w-full mx-4" style={{ backgroundColor: originTheme?.colors?.backgroundLight || "#694E1E" }}>
+                <h3 className="text-2xl font-bold mb-4" style={{ color: secondaryColor }}>
                   Share Your Insight
                 </h3>
                 <textarea
-                  className="w-full rounded-lg border-2"
+                  className="w-full rounded-lg border-2 p-3 mb-4"
                   style={{ 
                     borderColor: `${primaryColor}40`,
                     backgroundColor: 'rgba(0,0,0,0.3)',
@@ -203,24 +315,24 @@ export default function Realm1Mission() {
                   rows={5}
                   value={shareContent}
                   onChange={(e) => setShareContent(e.target.value)}
+                  placeholder="Share what you learned..."
                 />
-                <div className="flex flex-wrap gap-3">
-                  <button className="bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors">X (Twitter)</button>
-                  <button className="bg-blue-800 text-white rounded-lg shadow-md hover:bg-blue-900 transition-colors">Facebook</button>
-                  <button className="bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-colors">WhatsApp</button>
-                  <button className="bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors">Telegram</button>
-                  <button className="bg-purple-700 text-white rounded-lg shadow-md hover:bg-purple-800 transition-colors">Nostr</button>
+                <div className="flex flex-wrap gap-3 mb-4">
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors">X (Twitter)</button>
+                  <button className="bg-blue-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-900 transition-colors">Facebook</button>
+                  <button className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition-colors">WhatsApp</button>
+                  <button className="bg-purple-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-purple-800 transition-colors">Nostr</button>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex justify-end space-x-3">
                   <button 
                     onClick={() => setShowShareModal(false)}
-                    className="bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition-colors"
+                    className="bg-gray-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-600 transition-colors"
                   >
                     Close
                   </button>
                   <button
                     onClick={handleMissionComplete}
-                    className="text-white rounded-lg shadow-md transition-colors"
+                    className="text-white px-6 py-2 rounded-lg shadow-md transition-colors"
                     style={{ 
                       backgroundColor: primaryColor,
                       boxShadow: `0 0 10px ${primaryColor}80`
